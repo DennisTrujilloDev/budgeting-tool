@@ -1,3 +1,5 @@
+package com.budget.tool;
+
 public class BudgetCandidates  {
 
   public static final double EMRGENCY_FUND_CONSTANT = 0.10;
@@ -17,7 +19,7 @@ public class BudgetCandidates  {
   }
 
 
-  Debts debts = new Debts();
+  Debt debt = new Debt();
   public double getDebt() {
     return debt;
   }

@@ -1,3 +1,5 @@
+package com.budget.tool;
+
 public class UserMonthlyExpenses {
 
   double electricBill;

@@ -1,45 +1,51 @@
+package com.budget.tool;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Main {
+public class UserInput {
 
-  private static UserProfile userProfile;
-  private static boolean isHomeOwner;
-  private static Integer monthlyMortgage;
-  private static Integer monthlyRent;
-  private static Integer annualIncome;
-  private static Integer totalDebt;
-  private static Integer totalMonthlyDebtPayment;
-  private static Integer totalMonthlyExpenses;
-  private static Integer totalAvailableBudget;
-  private static boolean isEligibleForBudgeting;
+  private UserProfile userProfile;
+  private boolean isHomeOwner;
+  private Integer monthlyMortgage;
+  private Integer monthlyRent;
+  private Integer annualIncome;
+  private Integer totalDebt;
+  private Integer totalMonthlyDebtPayment;
+  private Integer totalMonthlyExpenses;
+  private Integer totalAvailableBudget;
+  private boolean isEligibleForBudgeting;
+  private BufferedReader reader;
 
-  public static void main(String[] args) {
+  public UserInput() throws IOException {
+    reader = new BufferedReader(new InputStreamReader(System.in));
 
-    Scanner sc = new Scanner(System.in);
     //ask user's name and print welcome message.
-    welcomeMessage(sc);
+    welcomeMessage();
 
     //ask whether user is individual or family
-    isUserIndividualOrFamily(sc);
+    isUserIndividualOrFamily();
 
     //ask whether user is a homeowner or a renter.
-    isUserHomewonerOrRenter(sc);
+    isUserHomewonerOrRenter();
 
     //collect total monthly mortgage or rent of the user depending on whether they are homeowner or
     // a renter.
-    collectTotalMortgageOrRent(sc);
+    collectTotalMortgageOrRent();
 
     // get the user's annual income
-    getAnnualIncome(sc);
+    getAnnualIncome();
 
     //get user's  total debt including student loan, car loan, medical bills etc
-    getTotalDebt(sc);
+    getTotalDebt();
 
     //Get User's Monthly Debt Payment
-    getMonthlyDebtPayment(sc);
+    getMonthlyDebtPayment();
 
     //Get User's Monthly Expenses
-    getMonthlyExpenses(sc);
+    getMonthlyExpenses();
 
     //Calculate Total amount available for budgeting each month. Total available budget is
     // annualIncome/12 - total debt - total monthly expense.
@@ -49,7 +55,7 @@ public class Main {
     determineBudgetingEligibility();
   }
 
-  private static void determineBudgetingEligibility() {
+   public void determineBudgetingEligibility() {
     Integer monthlyIncome = annualIncome/12;
     Double maxLimitForBudgeting = monthlyIncome * 0.20;
 
@@ -64,7 +70,7 @@ public class Main {
 
   }
 
-  private static void calculateAvailableBudget() {
+  private void calculateAvailableBudget() {
     if(isHomeOwner) {
       totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
           totalMonthlyExpenses - monthlyMortgage;
@@ -76,10 +82,10 @@ public class Main {
     System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
   }
 
-  private static void getMonthlyExpenses(Scanner sc) {
+  private void getMonthlyExpenses() throws IOException {
     while (true) {
       System.out.println("How much do you pay each month in expenses?");
-      String totalExpensesStr = sc.nextLine();
+      String totalExpensesStr = reader.readLine();
       try {
         totalMonthlyExpenses = Integer.parseInt(totalExpensesStr);
         break;
@@ -90,10 +96,10 @@ public class Main {
     System.out.println("Your Monthly Payment: " + totalMonthlyExpenses);
   }
 
-  private static void getMonthlyDebtPayment(Scanner sc) {
+  private void getMonthlyDebtPayment() throws IOException {
     while (true) {
       System.out.println("How much debt do you pay each month in total?");
-      String totalPaymentStr = sc.nextLine();
+      String totalPaymentStr = reader.readLine();
       try {
         totalMonthlyDebtPayment = Integer.parseInt(totalPaymentStr);
         break;
@@ -104,10 +110,10 @@ public class Main {
     System.out.println("Your Monthly Payment: " + totalMonthlyDebtPayment);
   }
 
-  private static void getTotalDebt(Scanner sc) {
+  private void getTotalDebt() throws IOException {
     while (true) {
       System.out.println("How much debt do you have?");
-      String debtStr = sc.nextLine();
+      String debtStr = reader.readLine();
       try {
         totalDebt = Integer.parseInt(debtStr);
         break;
@@ -118,10 +124,10 @@ public class Main {
     System.out.println("Your debt: " + totalDebt);
   }
 
-  private static void getAnnualIncome(Scanner sc) {
+  private void getAnnualIncome() throws IOException {
     while (true) {
       System.out.println("What's your annual income?");
-      String annualIncomeStr = sc.nextLine();
+      String annualIncomeStr = reader.readLine();
       try {
         annualIncome = Integer.parseInt(annualIncomeStr);
         break;
@@ -132,12 +138,12 @@ public class Main {
     System.out.println("Annual Income: " + annualIncome);
   }
 
-  private static void collectTotalMortgageOrRent(Scanner sc) {
+  private void collectTotalMortgageOrRent() throws IOException {
     //If the user is a home owner, ask how much mortgage do they pay
     if (isHomeOwner) {
       while (true) {
         System.out.println("How much do you pay in mortgage each month?");
-        String mortgageStr = sc.nextLine();
+        String mortgageStr = reader.readLine();
 
         try {
           monthlyMortgage = Integer.parseInt(mortgageStr);
@@ -153,7 +159,7 @@ public class Main {
     if (!isHomeOwner) {
       while (true) {
         System.out.println("How much rent do yoy pay each month?");
-        String rentStr = sc.nextLine();
+        String rentStr = reader.readLine();
         try {
           monthlyRent = Integer.parseInt(rentStr);
           break;
@@ -165,10 +171,10 @@ public class Main {
     }
   }
 
-  private static void isUserHomewonerOrRenter(Scanner sc) {
+  private void isUserHomewonerOrRenter() throws IOException {
     while (true) {
       System.out.println("Are you a home owner? Y for Yes, N for No.");
-      String homeOwner = sc.nextLine();
+      String homeOwner = reader.readLine();
       if (homeOwner.equalsIgnoreCase("y")) {
         isHomeOwner = true;
         break;
@@ -181,9 +187,9 @@ public class Main {
     }
   }
 
-  private static void isUserIndividualOrFamily(Scanner sc) {
+  private void isUserIndividualOrFamily() throws IOException {
     while (true) {
-      String individualOrFamily = sc.nextLine();
+      String individualOrFamily = reader.readLine();
       if (individualOrFamily.equalsIgnoreCase("i")) {
         userProfile = UserProfile.INDIVIDUAL;
         break;
@@ -197,13 +203,14 @@ public class Main {
     System.out.println("User Profile: " + userProfile);
   }
 
-  private static void welcomeMessage(Scanner sc) {
+  private void welcomeMessage() throws IOException {
     System.out.println("Welcome to Budgeting Counseling.");
     System.out.println("What's your name?");
-    String name = sc.nextLine();
+    String name = reader.readLine();
 
     System.out.println("Hello, " + name);
 
     System.out.println("Are you an individual or a family? Type I for Individual, F for Family.");
   }
+
 }

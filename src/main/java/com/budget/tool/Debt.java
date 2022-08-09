@@ -1,4 +1,6 @@
-public class Debts {
+package com.budget.tool;
+
+public class Debt {
 
   double carPayment;
   double  medicalBill;

@@ -1,0 +1,19 @@
+#STart
+Ask for Name
+-Save the name in a variable.
+-Print out a friendly message containing user's name to user.
+-Give user option to continue
+# Select User Profile- Individual or Family
+#Ask User about housing Status- Are you a home owner? or Do you rent ?
+IF NONE= advise in a nice way
+#Enter Total Mortgage payemnt or Enter rent in USD
+#Select Income Type(Net Salary)- Weekly , Bi-Weekly, Monthly
+#Request Debt information from user
+- Credit Card( Enter interest rate) , Car payment, student loan, medical bills,
+#Request Expenses from user
+-Electric Bill, Phone Bill, Internet Bill, Car insurance, 
+#Amount Available for Budgeting
+(Income –X) where X = expenses + debt
+#Determine type of budheting asistance guidance based on Amount available for bdugeting (issue advice regardless of outcome)
+#Dispplay recommended budget
+

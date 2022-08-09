@@ -9,7 +9,7 @@ public class MainClient {
 
   public static void main(String[] args) throws IOException {
 
-    // Accept income and debt from user
+    // Accept income and debt from user.
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     System.out.println("Enter your income: ");
     int income = Integer.parseInt(reader.readLine());

@@ -1,3 +1,5 @@
+package com.dng;
+
 public enum UserMonthlyExpensesType {
 
   ELECTRIC_BILL,
@@ -7,7 +9,7 @@ public enum UserMonthlyExpensesType {
   GROCERIES,
   CAR_INSURANCE,
   GAS,
-  MISCELLANEOUS, // i.e Shopping and Emergency expenses
+  MISCELLANEOUS // i.e Shopping and Emergency expenses
 }
 
 

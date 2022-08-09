@@ -85,6 +85,7 @@ public class UserInput {
 
   }
 
+
   public UserProfile getUserProfile() {
     return userProfile;
   }

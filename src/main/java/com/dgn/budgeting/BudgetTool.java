@@ -6,11 +6,11 @@ import java.util.ResourceBundle;
 
 public class BudgetTool {
 
-  private final String BUNDLE_NAME = "messages";
-  private final BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-
-  private final ResourceBundle bundle = ResourceBundle.getBundle(BUNDLE_NAME);
-
+//  private final String BUNDLE_NAME = "messages";
+//  private BufferedReader buffer;
+  //should be final?
+//  private ResourceBundle bundle;
+//should be final?
 
   String userName;
   //  String continueOrExit;
@@ -37,13 +37,13 @@ public class BudgetTool {
 
   //option to keep using tool
   public BudgetTool() {
+//    bundle = ResourceBundle.getBundle(BUNDLE_NAME);
 //    buffer = new BufferedReader(new InputStreamReader(System.in));
-    //out of scope for other ctors
 //    String nameInput = bundle.getString(pleaseInputName);
 //    System.out.printf(nameInput);
   }
 
-  public BudgetTool(BufferedReader buffer, String name, int familySize, String rentOrOwn, String debtOrNo,
+  public BudgetTool(String name, int familySize, String rentOrOwn, String debtOrNo,
       double monthlySalary, double miscellaneous, double monthlyExpenses, double debtTotal) {
     if (name.length()>0) {
       this.userName = name;

@@ -23,12 +23,10 @@ public class BudgetCandidates {
   }
 
   public void setDebt(double debt) {
-    this.debt = debt;
     this.debtplusExpenses = debt;
   }
 
   public double budgetAmount() {
-    budgetAmount = Math.abs(debt - income);
     budgetAmount = Math.abs(debtplusExpenses - income);
     return budgetAmount;
   }
@@ -38,6 +36,7 @@ public class BudgetCandidates {
   public Object calculateEmergencyFund(){
     double amount = budgetAmount() * EMRGENCY_FUND_CONSTANT;
     return amount;
+
   }
   //Method to calculate recommended amount for savings
   public Object calculateSavings(){

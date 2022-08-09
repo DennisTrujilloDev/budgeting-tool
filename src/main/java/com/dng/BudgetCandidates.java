@@ -5,7 +5,7 @@ public class BudgetCandidates {
   public static final double EMRGENCY_FUND_CONSTANT = 0.10;
   public static final double SAVINGS_CONSTANT = 0.15;
   public static final double MISCELLENAOUS_CONSTANT = 0.40;
-  public static final double FOOD_CONSTANT = 0.25;
+  public static final double FOOD_CONSTANT = 0.35;
 
   //fields..
   double income;
@@ -23,11 +23,11 @@ public class BudgetCandidates {
   }
 
   public void setDebt(double debt) {
-    this.debtplusExpenses = debt;
+    this.debt = debt;
   }
 
   public double budgetAmount() {
-    budgetAmount = Math.abs(debtplusExpenses - income);
+    budgetAmount = Math.abs(debt- income);
     return budgetAmount;
   }
 

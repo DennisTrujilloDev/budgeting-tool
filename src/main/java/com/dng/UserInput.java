@@ -67,7 +67,7 @@ public class UserInput {
       Double userMonthlyExpenses;
       while (true) {
 
-        System.out.println("How much do you pay each month in expenses" + userMonthlyExpense.get(i).userMonthlyExpensesType + "?");
+        System.out.println("How much do you pay each month in expenses " + userMonthlyExpense.get(i).userMonthlyExpensesType + "?");
         String totalMonthlyExpensesStr = reader.readLine();
         try {
           totalMonthlyExpenses = Double.parseDouble(totalMonthlyExpensesStr);

@@ -11,14 +11,13 @@ public class UserInput {
 
   private UserProfile userProfile;
   private boolean isHomeOwner;
-  private Integer monthlyMortgage;
-  private Integer monthlyRent;
-  private Integer annualIncome;
-  private Double totalDebt;
-  private Integer totalMonthlyDebtPayment;
-  private Integer totalMonthlyExpenses;
-  private Integer totalAvailableBudget;
-  private boolean isEligibleForBudgeting;
+  private Double monthlyMortgage = 0.0;
+  private Double monthlyRent = 0.0;
+  private Double annualIncome  = 0.0;
+  private Double totalMonthlyDebtPayment = 0.0;
+  private Double totalMonthlyExpenses = 0.0;
+  private Double totalAvailableBudget = 0.0;
+  private boolean isEligibleForBudgeting = false;
   private List<Debt> debts;
   private BufferedReader reader;
 
@@ -43,78 +42,28 @@ public class UserInput {
     collectTotalMortgageOrRent();
 
     // get the user's annual income
-    getAnnualIncome();
+    askForAnnualIncome();
 
     //get user's  total debt including student loan, car loan, medical bills etc
     getTotalMonthlyDebt();
 
-    //Get User's Monthly Debt Payment
-    getMonthlyDebtPayment();
-
     //Get User's Monthly Expenses
     getMonthlyExpenses();
-
-    //Calculate Total amount available for budgeting each month. Total available budget is
-    // annualIncome/12 - total debt - total monthly expense.
-    calculateAvailableBudget();
-
-    //if the user is saving less than 20% of their income, they are eligible for budgeting
-    determineBudgetingEligibility();
   }
 
-   private void determineBudgetingEligibility() {
-    Integer monthlyIncome = annualIncome/12;
-    Double maxLimitForBudgeting = monthlyIncome * 0.20;
-
-    if(totalAvailableBudget > maxLimitForBudgeting) {
-      isEligibleForBudgeting = false;
-      System.out.println("Your financial situation is in good standard.");
-    }
-    else {
-      isEligibleForBudgeting = true;
-      System.out.println("You require budgeting.");
-    }
-
-  }
-
-  private void calculateAvailableBudget() {
-    if(isHomeOwner) {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyMortgage;
-    }
-    else {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyRent;
-    }
-    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
-  }
 
   private void getMonthlyExpenses() throws IOException {
     while (true) {
       System.out.println("How much do you pay each month in expenses?");
       String totalExpensesStr = reader.readLine();
       try {
-        totalMonthlyExpenses = Integer.parseInt(totalExpensesStr);
+        totalMonthlyExpenses = Double.parseDouble(totalExpensesStr);
         break;
       } catch (NumberFormatException e) {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
     }
     System.out.println("Your Monthly Payment: " + totalMonthlyExpenses);
-  }
-
-  private void getMonthlyDebtPayment() throws IOException {
-    while (true) {
-      System.out.println("How much debt do you pay each month in total?");
-      String totalPaymentStr = reader.readLine();
-      try {
-        totalMonthlyDebtPayment = Integer.parseInt(totalPaymentStr);
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Incorrect Input. Please enter valid number.");
-      }
-    }
-    System.out.println("Your Monthly Payment: " + totalMonthlyDebtPayment);
   }
 
   public void getTotalMonthlyDebt() throws IOException {
@@ -125,7 +74,7 @@ public class UserInput {
         String debtStr = reader.readLine();
         try {
           debt = Double.parseDouble(debtStr);
-          totalDebt += debt;
+          debts.get(i).setAmount(debt);
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect Input. Please enter valid number.");
@@ -153,51 +102,54 @@ public class UserInput {
     isHomeOwner = homeOwner;
   }
 
-  public Integer getMonthlyMortgage() {
+  public Double getMonthlyMortgage() {
     return monthlyMortgage;
   }
 
-  public void setMonthlyMortgage(Integer monthlyMortgage) {
+  public void setMonthlyMortgage(Double monthlyMortgage) {
     this.monthlyMortgage = monthlyMortgage;
   }
 
-  public Integer getMonthlyRent() {
+  public Double getMonthlyRent() {
     return monthlyRent;
   }
 
-  public void setMonthlyRent(Integer monthlyRent) {
+  public void setMonthlyRent(Double monthlyRent) {
     this.monthlyRent = monthlyRent;
   }
 
-  public void setAnnualIncome(Integer annualIncome) {
+
+  public Double getAnnualIncome() {
+    return annualIncome;
+  }
+  public void setAnnualIncome(Double annualIncome) {
     this.annualIncome = annualIncome;
   }
 
   public void setTotalDebt(Double totalDebt) {
-    this.totalDebt = totalDebt;
   }
 
-  public Integer getTotalMonthlyDebtPayment() {
+  public Double getTotalMonthlyDebtPayment() {
     return totalMonthlyDebtPayment;
   }
 
-  public void setTotalMonthlyDebtPayment(Integer totalMonthlyDebtPayment) {
+  public void setTotalMonthlyDebtPayment(Double totalMonthlyDebtPayment) {
     this.totalMonthlyDebtPayment = totalMonthlyDebtPayment;
   }
 
-  public Integer getTotalMonthlyExpenses() {
+  public Double getTotalMonthlyExpenses() {
     return totalMonthlyExpenses;
   }
 
-  public void setTotalMonthlyExpenses(Integer totalMonthlyExpenses) {
+  public void setTotalMonthlyExpenses(Double totalMonthlyExpenses) {
     this.totalMonthlyExpenses = totalMonthlyExpenses;
   }
 
-  public Integer getTotalAvailableBudget() {
+  public Double getTotalAvailableBudget() {
     return totalAvailableBudget;
   }
 
-  public void setTotalAvailableBudget(Integer totalAvailableBudget) {
+  public void setTotalAvailableBudget(Double totalAvailableBudget) {
     this.totalAvailableBudget = totalAvailableBudget;
   }
 
@@ -209,12 +161,12 @@ public class UserInput {
     isEligibleForBudgeting = eligibleForBudgeting;
   }
 
-  private void getAnnualIncome() throws IOException {
+  private void askForAnnualIncome() throws IOException {
     while (true) {
       System.out.println("What's your annual income?");
       String annualIncomeStr = reader.readLine();
       try {
-        annualIncome = Integer.parseInt(annualIncomeStr);
+        annualIncome = Double.parseDouble(annualIncomeStr);
         break;
       } catch (NumberFormatException e) {
         System.out.println("Incorrect Input. Please enter valid number.");
@@ -231,7 +183,7 @@ public class UserInput {
         String mortgageStr = reader.readLine();
 
         try {
-          monthlyMortgage = Integer.parseInt(mortgageStr);
+          monthlyMortgage = Double.parseDouble(mortgageStr);
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect Input. Please enter valid number.");
@@ -246,7 +198,7 @@ public class UserInput {
         System.out.println("How much rent do yoy pay each month?");
         String rentStr = reader.readLine();
         try {
-          monthlyRent = Integer.parseInt(rentStr);
+          monthlyRent = Double.parseDouble(rentStr);
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect Input. Please enter valid number.");

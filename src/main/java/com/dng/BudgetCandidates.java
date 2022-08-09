@@ -7,7 +7,7 @@ public class BudgetCandidates {
   public static final double MISCELLENAOUS_CONSTANT = 0.40;
   public static final double FOOD_CONSTANT = 0.25;
 
-  //fields
+  //fields..
   double income;
   double debt;
   double debtplusExpenses;

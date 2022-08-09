@@ -1,13 +1,10 @@
-package com.budget.tool;
+package com.dng;
 
 public class Debt {
-
   double carPayment;
   double  medicalBill;
   double  studentLoan;
   double  creditCardPayment;
-
-
 
   //Accessor methods
   public double  getCarPayment() {

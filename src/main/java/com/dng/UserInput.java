@@ -1,4 +1,4 @@
-package com.budget.tool;
+package com.dng;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class UserInput {
     determineBudgetingEligibility();
   }
 
-   public void determineBudgetingEligibility() {
+   private void determineBudgetingEligibility() {
     Integer monthlyIncome = annualIncome/12;
     Double maxLimitForBudgeting = monthlyIncome * 0.20;
 
@@ -122,6 +122,78 @@ public class UserInput {
       }
     }
     System.out.println("Your debt: " + totalDebt);
+  }
+
+  public UserProfile getUserProfile() {
+    return userProfile;
+  }
+
+  public void setUserProfile(UserProfile userProfile) {
+    this.userProfile = userProfile;
+  }
+
+  public boolean isHomeOwner() {
+    return isHomeOwner;
+  }
+
+  public void setHomeOwner(boolean homeOwner) {
+    isHomeOwner = homeOwner;
+  }
+
+  public Integer getMonthlyMortgage() {
+    return monthlyMortgage;
+  }
+
+  public void setMonthlyMortgage(Integer monthlyMortgage) {
+    this.monthlyMortgage = monthlyMortgage;
+  }
+
+  public Integer getMonthlyRent() {
+    return monthlyRent;
+  }
+
+  public void setMonthlyRent(Integer monthlyRent) {
+    this.monthlyRent = monthlyRent;
+  }
+
+  public void setAnnualIncome(Integer annualIncome) {
+    this.annualIncome = annualIncome;
+  }
+
+  public void setTotalDebt(Integer totalDebt) {
+    this.totalDebt = totalDebt;
+  }
+
+  public Integer getTotalMonthlyDebtPayment() {
+    return totalMonthlyDebtPayment;
+  }
+
+  public void setTotalMonthlyDebtPayment(Integer totalMonthlyDebtPayment) {
+    this.totalMonthlyDebtPayment = totalMonthlyDebtPayment;
+  }
+
+  public Integer getTotalMonthlyExpenses() {
+    return totalMonthlyExpenses;
+  }
+
+  public void setTotalMonthlyExpenses(Integer totalMonthlyExpenses) {
+    this.totalMonthlyExpenses = totalMonthlyExpenses;
+  }
+
+  public Integer getTotalAvailableBudget() {
+    return totalAvailableBudget;
+  }
+
+  public void setTotalAvailableBudget(Integer totalAvailableBudget) {
+    this.totalAvailableBudget = totalAvailableBudget;
+  }
+
+  public boolean isEligibleForBudgeting() {
+    return isEligibleForBudgeting;
+  }
+
+  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
+    isEligibleForBudgeting = eligibleForBudgeting;
   }
 
   private void getAnnualIncome() throws IOException {

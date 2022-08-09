@@ -1,4 +1,4 @@
-package com.budget.tool;
+package com.dng;
 
 public class BudgetCandidates  {
 
@@ -9,18 +9,16 @@ public class BudgetCandidates  {
 
   //fields
   double income;
-  double debt;
+  Debt debt;
   double debtplusExpenses;
   double budgetAmount;
 
-  public BudgetCandidates(double income, double debt) {
+  public BudgetCandidates(double income, Debt debt) {
     this.income = income;
     this.debt = debt;
   }
 
-
-  Debt debt = new Debt();
-  public double getDebt() {
+  public Debt getDebt() {
     return debt;
   }
 

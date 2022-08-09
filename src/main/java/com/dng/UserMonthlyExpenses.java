@@ -1,4 +1,4 @@
-package com.budget.tool;
+package com.dng;
 
 public class UserMonthlyExpenses {
 

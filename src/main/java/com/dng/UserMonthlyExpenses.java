@@ -16,7 +16,6 @@ public class UserMonthlyExpenses {
   public void setDebtType(DebtType debtType) {
     this.userMonthlyExpensesType = userMonthlyExpensesType;
   }
-
   public double getAmount() {
     return amount;
   }

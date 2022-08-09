@@ -7,6 +7,7 @@ public class BudgetCandidates {
   public static void executeBudgeting(UserInput userInput) {
     //Calculate Total amount available for budgeting each month.
     // Total available budget = annualIncome/12 - total debt - total monthly expense.
+
     Double totalAvailableBudget = BudgetCandidates.calculateAvailableBudget(userInput.isHomeOwner(),
         userInput.getAnnualIncome(), userInput.getTotalMonthlyDebtPayment(),
         userInput.getTotalMonthlyExpenses(), userInput.getMonthlyRent(), userInput.getMonthlyMortgage());

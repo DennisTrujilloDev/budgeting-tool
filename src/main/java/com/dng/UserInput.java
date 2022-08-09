@@ -18,6 +18,7 @@ public class UserInput {
   private Double totalAvailableBudget = 0.0;
   private boolean isEligibleForBudgeting = false;
   private List<Debt> debts;
+  private List<UserMonthlyExpenses> userMonthlyExpense;
   private BufferedReader reader;
 
   public UserInput() throws IOException {
@@ -52,17 +53,21 @@ public class UserInput {
 
 
   private void getMonthlyExpenses() throws IOException {
-    while (true) {
-      System.out.println("How much do you pay each month in expenses?");
-      String totalExpensesStr = reader.readLine();
-      try {
-        totalMonthlyExpenses = Double.parseDouble(totalExpensesStr);
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Incorrect Input. Please enter valid number.");
+    for (int i = 0; i < userMonthlyExpense.size(); i++) {
+      Double userMonthlyExpenses;
+      while (true) {
+
+        System.out.println("How much do you pay each month in expenses" + userMonthlyExpense.get(i).userMonthlyExpensesType + "?");
+        String totalMonthlyExpensesStr = reader.readLine();
+        try {
+          totalMonthlyExpenses = Double.parseDouble(totalMonthlyExpensesStr);
+          break;
+        } catch (NumberFormatException e) {
+          System.out.println("Incorrect Input. Please enter valid number.");
+        }
       }
+      System.out.println("Your Monthly Payment: " + totalMonthlyExpenses);
     }
-    System.out.println("Your Monthly Payment: " + totalMonthlyExpenses);
   }
 
   public void getTotalMonthlyDebt() throws IOException {

@@ -8,6 +8,8 @@ public class Main {
   private static Integer mortgage;
   private static Integer rent;
   private static Integer annualIncome;
+  private static Integer debt;
+  private static double interestRate;
 
 
   public static void main(String[] args) {
@@ -68,10 +70,9 @@ public class Main {
 
     //If the user is not a home owner (renter), ask how much rent do they pay
     if(!isHomeOwner) {
-      System.out.println("How much rent do yoy pay each month?");
-      String rentStr = sc.nextLine();
-
       while(true) {
+        System.out.println("How much rent do yoy pay each month?");
+        String rentStr = sc.nextLine();
         try {
           rent = Integer.parseInt(rentStr);
           break;
@@ -83,10 +84,9 @@ public class Main {
     }
 
     // Ask user for their annual income
-    System.out.println("What's your annual income?");
-    String annualIncomeStr = sc.nextLine();
-
     while (true) {
+      System.out.println("What's your annual income?");
+      String annualIncomeStr = sc.nextLine();
       try {
         annualIncome = Integer.parseInt(annualIncomeStr);
         break;
@@ -96,5 +96,18 @@ public class Main {
     }
     System.out.println("Annual Income: " + annualIncome);
 
+    //Collect user's debt
+
+    while(true) {
+      System.out.println("How much debt do you have?");
+      String debtStr = sc.nextLine();
+      try {
+        debt = Integer.parseInt(debtStr);
+        break;
+      } catch (NumberFormatException e) {
+        System.out.println("Incorrect Input. Please enter valid number.");
+      }
+    }
+    System.out.println("Your debt: " + debt);
   }
 }

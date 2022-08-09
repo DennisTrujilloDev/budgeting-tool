@@ -1,30 +1,30 @@
 public class Debts {
 
-  int carPayment;
-  int medicalBill;
-  int studentLoan;
-  int creditCardPayment;
+  double carPayment;
+  double  medicalBill;
+  double  studentLoan;
+  double  creditCardPayment;
 
 
 
   //Accessor methods
-  public int getCarPayment() {
+  public double  getCarPayment() {
     return carPayment;
   }
 
-  public void setCarPayment(int carPayment) {
+  public void setCarPayment(double carPayment) {
     this.carPayment = carPayment;
   }
 
-  public int getMedicalBill() {
+  public double  getMedicalBill() {
     return medicalBill;
   }
 
-  public void setMedicalBill(int medicalBill) {
+  public void setMedicalBill(double  medicalBill) {
     this.medicalBill = medicalBill;
   }
 
-  public int getStudentLoan() {
+  public double  getStudentLoan() {
     return studentLoan;
   }
 
@@ -32,7 +32,7 @@ public class Debts {
     this.studentLoan = studentLoan;
   }
 
-  public int getCreditCardPayment() {
+  public double getCreditCardPayment() {
     return creditCardPayment;
   }
 

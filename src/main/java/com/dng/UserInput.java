@@ -23,6 +23,17 @@ public class UserInput {
 
   public UserInput() throws IOException {
     reader = new BufferedReader(new InputStreamReader(System.in));
+    userMonthlyExpense = new ArrayList<>();
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.PHONE_BILL, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.GROCERIES, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.GAS, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.WATER_BILL, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.INTERNET_BILL, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.ELECTRIC_BILL, 0.00) );
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.MISCELLANEOUS, 0.00) );
+
+    userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.CAR_INSURANCE, 0.00) );
+
     debts = new ArrayList<>();
     debts.add(new Debt(DebtType.CAR_LOAN, 0.0));
     debts.add(new Debt(DebtType.CREDIT_CARDS, 0.0));

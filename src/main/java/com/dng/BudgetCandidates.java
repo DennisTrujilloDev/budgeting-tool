@@ -31,7 +31,7 @@ public class BudgetCandidates {
     return budgetAmount;
   }
 
-  //Business Methods
+  //Business Method
   //Method to calculate recommended amount for emergency fund
   public Object calculateEmergencyFund(){
     double amount = budgetAmount() * EMRGENCY_FUND_CONSTANT;

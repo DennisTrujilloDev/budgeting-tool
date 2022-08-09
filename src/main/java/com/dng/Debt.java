@@ -1,41 +1,27 @@
 package com.dng;
 
 public class Debt {
-  double carPayment;
-  double  medicalBill;
-  double  studentLoan;
-  double  creditCardPayment;
+   DebtType debtType;
+   double amount;
 
-  //Accessor methods
-  public double  getCarPayment() {
-    return carPayment;
+  public Debt(DebtType debtType, double amount) {
+    this.debtType = debtType;
+    this.amount = amount;
   }
 
-  public void setCarPayment(double carPayment) {
-    this.carPayment = carPayment;
+  public DebtType getDebtType() {
+    return debtType;
   }
 
-  public double  getMedicalBill() {
-    return medicalBill;
+  public void setDebtType(DebtType debtType) {
+    this.debtType = debtType;
   }
 
-  public void setMedicalBill(double  medicalBill) {
-    this.medicalBill = medicalBill;
+  public double getAmount() {
+    return amount;
   }
 
-  public double  getStudentLoan() {
-    return studentLoan;
-  }
-
-  public void setStudentLoan(int studentLoan) {
-    this.studentLoan = studentLoan;
-  }
-
-  public double getCreditCardPayment() {
-    return creditCardPayment;
-  }
-
-  public void setCreditCardPayment(int creditCardPayment) {
-    this.creditCardPayment = creditCardPayment;
+  public void setAmount(double amount) {
+    this.amount = amount;
   }
 }

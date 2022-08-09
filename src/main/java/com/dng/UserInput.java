@@ -3,6 +3,8 @@ package com.dng;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInput {
@@ -12,16 +14,21 @@ public class UserInput {
   private Integer monthlyMortgage;
   private Integer monthlyRent;
   private Integer annualIncome;
-  private Integer totalDebt;
+  private Double totalDebt;
   private Integer totalMonthlyDebtPayment;
   private Integer totalMonthlyExpenses;
   private Integer totalAvailableBudget;
   private boolean isEligibleForBudgeting;
+  private List<Debt> debts;
   private BufferedReader reader;
 
   public UserInput() throws IOException {
     reader = new BufferedReader(new InputStreamReader(System.in));
-
+    debts = new ArrayList<>();
+    debts.add(new Debt(DebtType.CAR_LOAN, 0.0));
+    debts.add(new Debt(DebtType.CREDIT_CARDS, 0.0));
+    debts.add(new Debt(DebtType.MEDICAL_BILLS, 0.0));
+    debts.add(new Debt(DebtType.STUDENT_LOAN,  0.0));
     //ask user's name and print welcome message.
     welcomeMessage();
 
@@ -39,7 +46,7 @@ public class UserInput {
     getAnnualIncome();
 
     //get user's  total debt including student loan, car loan, medical bills etc
-    getTotalDebt();
+    getTotalMonthlyDebt();
 
     //Get User's Monthly Debt Payment
     getMonthlyDebtPayment();
@@ -110,18 +117,24 @@ public class UserInput {
     System.out.println("Your Monthly Payment: " + totalMonthlyDebtPayment);
   }
 
-  private void getTotalDebt() throws IOException {
-    while (true) {
-      System.out.println("How much debt do you have?");
-      String debtStr = reader.readLine();
-      try {
-        totalDebt = Integer.parseInt(debtStr);
-        break;
-      } catch (NumberFormatException e) {
-        System.out.println("Incorrect Input. Please enter valid number.");
+  public void getTotalMonthlyDebt() throws IOException {
+    for (int i = 0; i < debts.size(); i++) {
+      Double debt;
+      while(true) {
+        System.out.println("How much do you pay each month in " + debts.get(i).debtType + "?");
+        String debtStr = reader.readLine();
+        try {
+          debt = Double.parseDouble(debtStr);
+          totalDebt += debt;
+          break;
+        } catch (NumberFormatException e) {
+          System.out.println("Incorrect Input. Please enter valid number.");
+        }
       }
+      System.out.println(String.format("Your %s debt: %s", debts.get(i).debtType, debt));
     }
-    System.out.println("Your debt: " + totalDebt);
+
+
   }
 
   public UserProfile getUserProfile() {
@@ -160,7 +173,7 @@ public class UserInput {
     this.annualIncome = annualIncome;
   }
 
-  public void setTotalDebt(Integer totalDebt) {
+  public void setTotalDebt(Double totalDebt) {
     this.totalDebt = totalDebt;
   }
 

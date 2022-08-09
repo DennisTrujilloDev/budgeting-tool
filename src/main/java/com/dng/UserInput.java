@@ -31,7 +31,6 @@ public class UserInput {
     userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.INTERNET_BILL, 0.00) );
     userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.ELECTRIC_BILL, 0.00) );
     userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.MISCELLANEOUS, 0.00) );
-
     userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.CAR_INSURANCE, 0.00) );
 
     debts = new ArrayList<>();

@@ -2,7 +2,7 @@ public class UserInputs {
 
   String name;
   String individualOrFamily;
-  String homeowner;
+  boolean isHomeowner;
   double rent;
   double mortgage;
   double annualIncome;
@@ -25,12 +25,13 @@ public class UserInputs {
     this.individualOrFamily = individualOrFamily;
   }
 
-  public String getHomeowner() {
-    return homeowner;
+  public boolean getHomeowner() {
+    return isHomeowner;
   }
 
-  public void setHomeowner(String homeowner) {
-    this.homeowner = homeowner;
+  public boolean setHomeowner(String homeowner) {
+    this.isHomeowner = isHomeowner;
+    return false;
   }
 
   public double getRent() {

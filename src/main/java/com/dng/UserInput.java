@@ -41,6 +41,11 @@ public class UserInput {
     // a renter.
     collectTotalMortgageOrRent();
 
+    displayBudget();
+
+  }
+
+  private void displayBudget() {
     BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.totalMonthlyDebtPayment);
 
     System.out.println("Amount available for budgeting:" + fmt.format(budget.budgetAmount()));
@@ -51,7 +56,6 @@ public class UserInput {
         fmt.format(budget.calculateFoodBudget()));
     System.out.printf("Recommended Miscellaneous: %2s%n",
         fmt.format(budget.calculateMiscellanous()));
-
   }
 
   public UserMonthlyExpenses getProfile() {

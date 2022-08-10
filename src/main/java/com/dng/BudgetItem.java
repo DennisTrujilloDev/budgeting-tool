@@ -14,7 +14,6 @@ public class BudgetItem {
   double budgetAmount;
 
 
-
   public BudgetItem(double income, double debt) {
     this.income = income;
     this.debt = debt;
@@ -23,7 +22,6 @@ public class BudgetItem {
   public double getDebt() {
     return debt;
   }
-
   public void setDebt(double debt) {
     this.debt = debt;
   }

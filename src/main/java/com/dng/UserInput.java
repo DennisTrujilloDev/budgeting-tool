@@ -10,54 +10,17 @@ import java.io.InputStreamReader;
 
 public class UserInput {
 
-  //private UserProfile userProfile;
-//  private boolean isHomeOwner;
-//  private Double monthlyMortgage = 0.0;
-//  private Double monthlyRent = 0.0;
-//  private Double annualIncome  = 0.0;
-//  private Double totalMonthlyDebtPayment = 0.0;
-//  private Double totalMonthlyExpenses = 0.0;
-//  private Double totalAvailableBudget = 0.0;
-//  private boolean isEligibleForBudgeting = false;
-
-
   Locale locale = new Locale("en", "US");
   NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-//System.out.println(fmt.format(120.00));
 
-//  private List<Debt> debts;
-  //private List<UserProfile> userProfile;
+  private UserMonthlyExpenses profile = new UserMonthlyExpenses();
 
- private UserMonthlyExpenses profile = new UserMonthlyExpenses();
+  private BufferedReader reader;
 
- private BufferedReader reader;
-
-
-//  private BufferedReader reader;
 
   public UserInput() throws IOException {
 
     reader = new BufferedReader(new InputStreamReader(System.in));
-
-
-
-//    debts = new ArrayList<>();
-//    debts.add(new Debt(DebtType.CAR_LOAN, 0.0));
-//    debts.add(new Debt(DebtType.CREDIT_CARDS, 0.0));
-//    debts.add(new Debt(DebtType.MEDICAL_BILLS, 0.0));
-//    debts.add(new Debt(DebtType.STUDENT_LOAN, 0.0));
-
-
-//    debt.expenses = new ArrayList<>();
-//
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.PHONE_BILL, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.GROCERIES, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.GAS, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.WATER_BILL, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.INTERNET_BILL, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.ELECTRIC_BILL, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.MISCELLANEOUS, 0.00));
-//    debt.expenses.add(new UserMonthlyExpenses(ExpenseType.CAR_INSURANCE, 0.00));
 
     //ask for user's name and print welcome message.
     welcomeMessage();
@@ -77,8 +40,6 @@ public class UserInput {
     //collect total monthly mortgage or rent of the user depending on whether they are homeowner or
     // a renter.
     collectTotalMortgageOrRent();
-
-
 
     BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.totalMonthlyDebtPayment);
 
@@ -104,7 +65,6 @@ public class UserInput {
     profile.setName(name);
     System.out.println("Hello, " + profile.getName());
 
-    //System.out.println("Are you an individual or a family? Type I for Individual, F for Family.");
   }
 
   private void askForMonthlyIncome() throws IOException {
@@ -141,11 +101,11 @@ public class UserInput {
   public void getMonthlyDebt() throws IOException {
 
     //User prompt
-    System.out.println("\t\t\t.....MONTHLY DEBT PAYMENT.....\nEnter '0' if debt category does not apply.\n"
-        + "Monthly debt payments are any payments you make to pay back a creditor or lender for money you borrowed.\n");
+    System.out.println(
+        "\t\t\t.....MONTHLY DEBT PAYMENT.....\nEnter '0' if debt category does not apply.\n"
+            + "Monthly debt payments are any payments you make to pay back a creditor or lender for money you borrowed.\n");
     double sum = 0.0;
-    for (DebtType type: DebtType.values()) {
-//      for (int i = 0; i < debts.size(); i++) {
+    for (DebtType type : DebtType.values()) {
 
       double debtx = 0.0;
       while (true) {
@@ -154,7 +114,7 @@ public class UserInput {
 
         try {
           debtx = Double.parseDouble(debtStr);
-          profile.getDebts().add(new Debt(type,debtx));
+          profile.getDebts().add(new Debt(type, debtx));
 
           break;
         } catch (NumberFormatException e) {
@@ -162,13 +122,12 @@ public class UserInput {
         }
       }
 
-      //System.out.println(String.format("Your %s debt: %s", type, debtx));
       sum = sum + debtx;
 
     }
-    System.out.printf("%1$s, your monthly debt payment is: %2$s \n" , profile.getName(), sum);
+    System.out.printf("%1$s, your monthly debt payment is: %2$s \n", profile.getName(), sum);
     profile.setBasicDebts(sum);
-//TODO Introduce logic to advice user if monthly debt is greater than income
+//TODO if monthly debt is greater than income, Introduce logic to advice user
 
   }
 
@@ -225,10 +184,12 @@ public class UserInput {
       //TODO add miscellaneous expenses
 
       profile.setTotalMonthlyDebtPayment(
-          profile.getBasicDebts() + profile.getMonthlyMortgage()+ profile.getTotalMonthlyExpense());
+          profile.getBasicDebts() + profile.getMonthlyMortgage()
+              + profile.getTotalMonthlyExpense());
 
       // Get Total monthly payment and print out the amount
-      System.out.println("Monthly debt homeowner:: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+      System.out.println(
+          "Monthly debt homeowner:: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
 
     //If the user is not a homeowner (renter), ask how much rent do they pay
@@ -247,14 +208,10 @@ public class UserInput {
       profile.setMonthlyRent(profile.monthlyRent);
 
       profile.setTotalMonthlyDebtPayment(
-          profile.getBasicDebts() + profile.getMonthlyRent()+ profile.getTotalMonthlyExpense());
-      System.out.println("Monthly debt as a renter:  " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+          profile.getBasicDebts() + profile.getMonthlyRent() + profile.getTotalMonthlyExpense());
+      System.out.println(
+          "Monthly debt as a renter:  " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
-
   }
-
-
-
-
 
 }

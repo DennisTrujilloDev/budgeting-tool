@@ -53,7 +53,7 @@ public class MainClient {
     int income = Integer.parseInt(reader.readLine());
     System.out.println("Enter your debt: ");
     int debt = Integer.parseInt(reader.readLine());
-    BudgetCandidates ab = new BudgetCandidates(income, debt);
+    BudgetItem ab = new BudgetItem(income, debt);
 
     System.out.println("Recommended Savings : " + ab.calculateSavings());
     System.out.println("Recommended EmergencyFund: " + ab.calculateEmergencyFund());

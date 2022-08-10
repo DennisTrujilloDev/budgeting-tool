@@ -2,56 +2,53 @@ package com.dng;
 
 public class BudgetCandidates {
 
-  public static final double EMRGENCY_FUND_CONSTANT = 0.10;
-  public static final double SAVINGS_CONSTANT = 0.15;
-  public static final double MISCELLENAOUS_CONSTANT = 0.40;
-  public static final double FOOD_CONSTANT = 0.35;
+  private boolean isEligibleforBudgeting = false;
 
-  //fields..
-  double income;
-  double debt;
-  double debtplusExpenses;
-  double budgetAmount;
+  public static void executeBudgeting(UserInput userInput) {
+    //Calculate Total amount available for budgeting each month.
+    // Total available budget = annualIncome/12 - total debt - total monthly expense.
 
-  public BudgetCandidates(double income, double debt) {
-    this.income = income;
-    this.debt = debt;
-  }
+    Double totalAvailableBudget = BudgetCandidates.calculateAvailableBudget(userInput.debt.isHomeOwner(),
+        userInput.debt.getMonthlyIncome(), userInput.debt.getTotalMonthlyDebtPayment(),
+        userInput.debt.getTotalMonthlyExpenses(), userInput.debt.getMonthlyRent(), userInput.debt.getMonthlyMortgage());
 
-  public double getDebt() {
-    return debt;
-  }
-
-  public void setDebt(double debt) {
-    this.debt = debt;
-  }
-
-  public double budgetAmount() {
-    budgetAmount = Math.abs(debt- income);
-    return budgetAmount;
-  }
-
-  //Business Methods
-  //Method to calculate recommended amount for emergency fund
-  public Object calculateEmergencyFund(){
-    double amount = budgetAmount() * EMRGENCY_FUND_CONSTANT;
-    return amount;
+    giveBudgetAdvice(userInput.debt.getMonthlyIncome(), userInput.debt.getTotalAvailableBudget());
 
   }
-  //Method to calculate recommended amount for savings
-  public Object calculateSavings(){
-    double amount = budgetAmount() * SAVINGS_CONSTANT;
-    return amount;
+
+  private static void giveBudgetAdvice(Double annualIncome, Double totalAvailableBudget) {
+    Double monthlyIncome = annualIncome/12;
+
+    if(totalAvailableBudget <= 0) {
+      //TO-DO
+      System.out.println("Total Available Budget less than 0. You will need to think hard on how to manage your money.");
+    }
+    else if (totalAvailableBudget <= UserInput.debt.getMonthlyIncome() * 0.20) {
+      //TO-DO
+      System.out.println("f budget amount is less than a certain threshold,  \n"
+          + "Issue a warning about overspending and maybe cutting down on miscellaneous expenses.\n"
+          + "Also, give advise on getting an extra source of income to supplement their current income.");
+    }
+    else {
+      System.out.println("You are on the right track!");
+    }
   }
-  //Method to calculate recommended amount for miscellaneous
-  public Object calculateMiscellanous(){
-    double amount = budgetAmount() * MISCELLENAOUS_CONSTANT;
-    return amount;
-  }
-  //Method to calculate recommended amount for food
-  public Object calculateFoodBudget(){
-    double amount = budgetAmount() * FOOD_CONSTANT;
-    return amount;
+
+  private static Double calculateAvailableBudget(boolean isHomeOwner, Double annualIncome,
+      Double totalMonthlyDebtPayment, Double totalMonthlyExpenses, Double monthlyRent, Double monthlyMortgage) {
+
+    double totalAvailableBudget = 0.0;
+    if(isHomeOwner) {
+      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
+          totalMonthlyExpenses - monthlyMortgage;
+    }
+    else {
+      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
+          totalMonthlyExpenses - monthlyRent;
+    }
+    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
+
+    return totalAvailableBudget;
   }
 
 

@@ -17,14 +17,7 @@ public class Test {
   List<Debt> debts;
   List<UserMonthlyExpenses> userMonthlyExpense;
   BufferedReader reader;
-//
-//  public UserProfile getUserProfile() {
-//    return userProfile;
-//  }
-//
-//  public void setUserProfile(UserProfile userProfile) {
-//    this.userProfile = userProfile;
-//  }
+
 
   public boolean isHomeOwner() {
     return isHomeOwner;

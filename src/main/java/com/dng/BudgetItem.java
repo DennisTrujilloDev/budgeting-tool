@@ -29,7 +29,7 @@ public class BudgetItem {
   }
 
   public double budgetAmount() {
-    budgetAmount = Math.abs(debt- income);
+    budgetAmount = (income- debt);
     return budgetAmount;
   }
 

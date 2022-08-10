@@ -1,6 +1,6 @@
 package com.dng;
 
-public enum MonthlyExpenseType {
+public enum MonthlyExpensesType {
 
   ELECTRIC_BILL,
   INTERNET_BILL,

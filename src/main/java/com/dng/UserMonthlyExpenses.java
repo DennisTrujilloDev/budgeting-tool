@@ -6,6 +6,10 @@ import java.util.List;
 
 public class UserMonthlyExpenses {
 
+
+  MonthlyExpensesType expensesType;
+
+  public String userMonthlyExpensesType;
   //UserProfile userProfile;
   boolean isHomeOwner;
   Double monthlyMortgage = 0.0;
@@ -16,10 +20,18 @@ public class UserMonthlyExpenses {
 
   Double basicDebts=0.0;
   Double totalAvailableBudget = 0.0;
+
+  Double totalMonthlyExpense=0.0;
   boolean isEligibleForBudgeting = false;
   List<Debt> debts;
   List<UserMonthlyExpenses> userMonthlyExpense;
+
+
   BufferedReader reader;
+
+  public UserMonthlyExpenses(MonthlyExpensesType phoneBill, double v) {
+
+  }
 
 //
 
@@ -128,6 +140,14 @@ public class UserMonthlyExpenses {
     this.basicDebts = basicDebts;
   }
 
+  public Double getTotalMonthlyExpense() {
+    return totalMonthlyExpense;
+  }
+
+  public void setTotalMonthlyExpense(Double totalMonthlyExpense) {
+    this.totalMonthlyExpense = totalMonthlyExpense;
+  }
+
   //  public MonthlyExpensesType getUserMonthlyExpensesType() {
 //    return userMonthlyExpensesType;
 //  }
@@ -141,6 +161,8 @@ public class UserMonthlyExpenses {
 
   public UserMonthlyExpenses() {
   }
+
+
 
 //  public UserMonthlyExpenses(MonthlyExpensesType userMonthlyExpensesType, double amount) {
 //    this.userMonthlyExpensesType = userMonthlyExpensesType;

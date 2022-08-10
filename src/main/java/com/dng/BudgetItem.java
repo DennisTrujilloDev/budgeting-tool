@@ -19,6 +19,10 @@ public class BudgetItem {
     this.debt = debt;
   }
 
+  public BudgetItem() {
+
+  }
+
   public double getDebt() {
     return debt;
   }

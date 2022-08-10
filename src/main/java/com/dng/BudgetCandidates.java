@@ -2,6 +2,11 @@ package com.dng;
 
 public class BudgetCandidates {
 
+//  BudgetItem ab = new BudgetItem();
+
+BudgetItem budget = new BudgetItem();
+
+
   private boolean isEligibleforBudgeting = false;
 
   public static void executeBudgeting(UserInput userInput) {
@@ -24,7 +29,7 @@ public class BudgetCandidates {
       System.out.println("Total Available Budget less than 0. You will need to think hard on how to manage your money.");
     }
     else if (totalAvailableBudget <= monthlyIncome * 0.20) {
-      //TO-DO
+      //TODO
       System.out.println("f budget amount is less than a certain threshold,  \n"
           + "Issue a warning about overspending and maybe cutting down on miscellaneous expenses.\n"
           + "Also, give advise on getting an extra source of income to supplement their current income.");
@@ -34,19 +39,19 @@ public class BudgetCandidates {
     }
   }
 
-  private static Double calculateAvailableBudget(boolean isHomeOwner, Double annualIncome,
+  private static Double calculateAvailableBudget(boolean isHomeOwner, Double monthlyIncome,
       Double totalMonthlyDebtPayment, Double totalMonthlyExpenses, Double monthlyRent, Double monthlyMortgage) {
 
     double totalAvailableBudget = 0.0;
     if(isHomeOwner) {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyMortgage;
+      totalAvailableBudget = (monthlyIncome - (totalMonthlyDebtPayment -
+          totalMonthlyExpenses - monthlyMortgage));
     }
     else {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyRent;
+      totalAvailableBudget = (monthlyIncome - (totalMonthlyDebtPayment -
+          totalMonthlyExpenses - monthlyRent));
     }
-    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
+//    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
 
     return totalAvailableBudget;
   }

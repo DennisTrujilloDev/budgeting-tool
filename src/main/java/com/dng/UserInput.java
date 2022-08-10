@@ -10,18 +10,18 @@ public class UserInput {
 
   private UserProfile userProfile;
   private boolean isHomeOwner;
-  private Double monthlyMortgage = 0.0;
-  private Double monthlyRent = 0.0;
-  private Double annualIncome  = 0.0;
-  private Double totalMonthlyDebtPayment = 0.0;
-  private Double totalMonthlyExpenses = 0.0;
-  private Double totalAvailableBudget = 0.0;
-  private boolean isEligibleForBudgeting = false;
-  private List<Debt> debts;
-  private List<UserMonthlyExpenses> userMonthlyExpense;
-  private BufferedReader reader;
+  private Double monthlyMortgage;
+  private Double monthlyRent;
+  private Double annualIncome;
+  private Double totalMonthlyDebtPayment;
+  private Double totalMonthlyExpenses;
+  private Double totalAvailableBudget;
+  private boolean isEligibleForBudgeting;
+  private final List<Debt> debts;
+  private final List<UserMonthlyExpenses> userMonthlyExpense;
+  private final BufferedReader reader;
 
-  public UserInput() throws IOException {
+  UserInput() throws IOException {
     reader = new BufferedReader(new InputStreamReader(System.in));
     userMonthlyExpense = new ArrayList<>();
     userMonthlyExpense.add(new UserMonthlyExpenses(UserMonthlyExpensesType.PHONE_BILL, 0.00) );
@@ -65,6 +65,7 @@ public class UserInput {
   private void getMonthlyExpenses() throws IOException {
     for (int i = 0; i < userMonthlyExpense.size(); i++) {
       Double userMonthlyExpenses;
+      //above field not used
       while (true) {
 
         System.out.println("How much do you pay each month in expenses " + userMonthlyExpense.get(i).userMonthlyExpensesType + "?");
@@ -82,7 +83,7 @@ public class UserInput {
 
   public void getTotalMonthlyDebt() throws IOException {
     for (int i = 0; i < debts.size(); i++) {
-      Double debt;
+      double debt;
       while(true) {
         System.out.println("How much do you pay each month in " + debts.get(i).debtType + "?");
         String debtStr = reader.readLine();
@@ -210,7 +211,7 @@ public class UserInput {
     //If the user is not a home owner (renter), ask how much rent do they pay
     if (!isHomeOwner) {
       while (true) {
-        System.out.println("How much rent do yoy pay each month?");
+        System.out.println("How much rent do you pay each month?");
         String rentStr = reader.readLine();
         try {
           monthlyRent = Double.parseDouble(rentStr);

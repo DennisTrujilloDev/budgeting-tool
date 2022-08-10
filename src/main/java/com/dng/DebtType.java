@@ -2,7 +2,7 @@ package com.dng;
 
 public enum DebtType {
   CAR_LOAN               ("Car Loan"),
-  MEDICAL_BILLS          ("Medical bills"),
+  MEDICAL_BILLS          ("Medical Bills"),
   STUDENT_LOAN           ("Student Loans"),
   CREDIT_CARDS           ("Credit Cards");
 

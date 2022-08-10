@@ -101,8 +101,8 @@ public class UserInput {
     System.out.println("Welcome to Budgeting Counseling.");
     System.out.println("What's your name?");
     String name = reader.readLine();
-
-    System.out.println("Hello, " + name);
+    profile.setName(name);
+    System.out.println("Hello, " + profile.getName());
 
     //System.out.println("Are you an individual or a family? Type I for Individual, F for Family.");
   }
@@ -141,14 +141,15 @@ public class UserInput {
   public void getMonthlyDebt() throws IOException {
 
     //User prompt
-    System.out.println("     {{DEBTS}}\nEnter '0' if debt category does not apply ");
+    System.out.println("\t\t\t.....MONTHLY DEBT PAYMENT.....\nEnter '0' if debt category does not apply.\n"
+        + "Monthly debt payments are any payments you make to pay back a creditor or lender for money you borrowed.\n");
     double sum = 0.0;
     for (DebtType type: DebtType.values()) {
 //      for (int i = 0; i < debts.size(); i++) {
 
       double debtx = 0.0;
       while (true) {
-        System.out.println("Enter " + type + " Monthly payment");
+        System.out.println("Enter " + type + " Monthly payment\n");
         String debtStr = reader.readLine();
 
         try {
@@ -161,13 +162,13 @@ public class UserInput {
         }
       }
 
-      System.out.println(String.format("Your %s debt: %s", type, debtx));
+      //System.out.println(String.format("Your %s debt: %s", type, debtx));
       sum = sum + debtx;
 
     }
-    System.out.println("basic debt total: " + sum);
+    System.out.printf("%1$s, your monthly debt payment is: %2$s \n" , profile.getName(), sum);
     profile.setBasicDebts(sum);
-
+//TODO Introduce logic to advice user if monthly debt is greater than income
 
   }
 

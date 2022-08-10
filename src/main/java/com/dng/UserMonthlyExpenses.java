@@ -9,14 +9,9 @@ import java.util.Map;
 
 public class UserMonthlyExpenses {
 
-
-//  ExpenseType expensesType;
-
-
-
   public String userMonthlyExpensesType;
-  //UserProfile userProfile;
 
+  String name;
 
   boolean homeOwner;
   Double monthlyMortgage = 0.0;
@@ -32,30 +27,15 @@ public class UserMonthlyExpenses {
   boolean isEligibleForBudgeting = false;
   List<Debt> debts = new ArrayList<>();
   List<Expense> expenses = new ArrayList<>();
-//  List<UserMonthlyExpenses> userMonthlyExpense;
-
-//  BufferedReader reader;
-
-//  public UserMonthlyExpenses(ExpenseType phoneBill, double v) {
-//
-//
-//  }
-//
-//  public UserMonthlyExpenses(ExpenseType expensesType){
-//
-//    this.expensesType = expensesType;
-//  }
-
-//
 
 
-//  public UserProfile getUserProfile() {
-//    return userProfile;
-//  }
-//
-//  public void setUserProfile(UserProfile userProfile) {
-//    this.userProfile = userProfile;
-//  }
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 
   public boolean isHomeOwner() {
     return homeOwner;
@@ -125,21 +105,6 @@ public class UserMonthlyExpenses {
     return debts;
   }
 
-//  public void setDebts(List<Debt> debts) {
-//    this.debts = debts;
-//  }
-
-
-
-//  public List<UserMonthlyExpenses> getUserMonthlyExpense() {
-//    return userMonthlyExpense;
-//  }
-//
-//  public void setUserMonthlyExpense(List<UserMonthlyExpenses> userMonthlyExpense) {
-//    this.userMonthlyExpense = userMonthlyExpense;
-//  }
-
-
   public List<Expense> getExpenses() {
     return expenses;
   }
@@ -160,41 +125,9 @@ public class UserMonthlyExpenses {
     this.totalMonthlyExpense = totalMonthlyExpense;
   }
 
-  //  public ExpenseType getUserMonthlyExpensesType() {
-//    return userMonthlyExpensesType;
-//  }
-//
-//  public void setUserMonthlyExpensesType(ExpenseType userMonthlyExpensesType) {
-//    this.userMonthlyExpensesType = userMonthlyExpensesType;
-//  }
-//
-//  ExpenseType userMonthlyExpensesType;
-//  double amount;
 
   public UserMonthlyExpenses() {
   }
-
-
-
-//  public UserMonthlyExpenses(ExpenseType userMonthlyExpensesType, double amount) {
-//    this.userMonthlyExpensesType = userMonthlyExpensesType;
-//    this.amount = amount;
-//  }
-//
-//  public ExpenseType getUserMonthlyExpensesType() {
-//    return userMonthlyExpensesType;
-//  }
-
-//  public void setDebtType(DebtType debtType) {
-//    this.userMonthlyExpensesType = userMonthlyExpensesType;
-//  }
-//  public double getAmount() {
-//    return amount;
-//  }
-//
-//  public void setAmount(double amount) {
-//    this.amount = amount;
-//  }
 
 
 }

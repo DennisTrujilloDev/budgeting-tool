@@ -1,4 +1,6 @@
 package com.dng;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +20,12 @@ public class UserInput {
 //  private Double totalMonthlyExpenses = 0.0;
 //  private Double totalAvailableBudget = 0.0;
 //  private boolean isEligibleForBudgeting = false;
+
+
+
+  Locale locale = new Locale("en", "US");
+  NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+//System.out.println(fmt.format(120.00));
 
   private List<Debt> debts;
   private List <UserMonthlyExpenses> expense;
@@ -58,7 +66,8 @@ public class UserInput {
 
 
 
-
+    //User prompt
+    System.out.println("{{DEBTS}}\nEnter '0' if debt category does not apply ");
 
     //get user's  total debt including student loan, car loan, medical bills etc
     getMonthlyDebt();
@@ -74,11 +83,11 @@ public class UserInput {
     //getMonthlyExpenses();
     BudgetItem budget = new BudgetItem(debt.getMonthlyIncome(), debt.totalMonthlyDebtPayment);
 //    budget.budgetAmount();
-    System.out.println("Amount available for budgeting: " + budget.budgetAmount());
-    System.out.println("Recommended Savings : " + budget.calculateSavings());
-    System.out.println("Recommended EmergencyFund: " + budget.calculateEmergencyFund());
-    System.out.println("Recommended budget for Food : " + budget.calculateFoodBudget());
-    System.out.println("Recommended Miscellaneous: " + budget.calculateMiscellanous());
+    System.out.println("Amount available for budgeting:" + fmt.format(budget.budgetAmount()));
+    System.out.printf("Recommended Savings: %2s %n" , fmt.format(budget.calculateSavings()));
+    System.out.printf("Recommended EmergencyFund: %2s%n " , fmt.format(budget.calculateEmergencyFund()));
+    System.out.printf("Recommended budget for Food: %2s%n " , fmt.format(budget.calculateFoodBudget()));
+    System.out.printf("Recommended Miscellaneous: %2s%n" , fmt.format(budget.calculateMiscellanous()));
 
   }
 

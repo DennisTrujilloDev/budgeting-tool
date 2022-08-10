@@ -2,6 +2,7 @@ package com.dng;
 
 public class Debt {
 
+  //TODO Make fields private
   DebtType debtType;
   double amount;
 

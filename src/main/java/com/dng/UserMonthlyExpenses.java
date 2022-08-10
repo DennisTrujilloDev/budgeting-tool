@@ -1,17 +1,24 @@
 package com.dng;
 
 import java.io.BufferedReader;
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class UserMonthlyExpenses {
 
 
-  MonthlyExpensesType expensesType;
+//  ExpenseType expensesType;
+
+
 
   public String userMonthlyExpensesType;
   //UserProfile userProfile;
-  boolean isHomeOwner;
+
+
+  boolean homeOwner;
   Double monthlyMortgage = 0.0;
   Double monthlyRent = 0.0;
   Double monthlyIncome = 0.0;
@@ -23,15 +30,21 @@ public class UserMonthlyExpenses {
 
   Double totalMonthlyExpense=0.0;
   boolean isEligibleForBudgeting = false;
-  List<Debt> debts;
-  List<UserMonthlyExpenses> userMonthlyExpense;
+  List<Debt> debts = new ArrayList<>();
+  List<Expense> expenses = new ArrayList<>();
+//  List<UserMonthlyExpenses> userMonthlyExpense;
 
+//  BufferedReader reader;
 
-  BufferedReader reader;
-
-  public UserMonthlyExpenses(MonthlyExpensesType phoneBill, double v) {
-
-  }
+//  public UserMonthlyExpenses(ExpenseType phoneBill, double v) {
+//
+//
+//  }
+//
+//  public UserMonthlyExpenses(ExpenseType expensesType){
+//
+//    this.expensesType = expensesType;
+//  }
 
 //
 
@@ -45,11 +58,11 @@ public class UserMonthlyExpenses {
 //  }
 
   public boolean isHomeOwner() {
-    return isHomeOwner;
+    return homeOwner;
   }
 
   public void setHomeOwner(boolean homeOwner) {
-    isHomeOwner = homeOwner;
+    this.homeOwner = homeOwner;
   }
 
   public Double getMonthlyMortgage() {
@@ -112,24 +125,23 @@ public class UserMonthlyExpenses {
     return debts;
   }
 
-  public void setDebts(List<Debt> debts) {
-    this.debts = debts;
-  }
+//  public void setDebts(List<Debt> debts) {
+//    this.debts = debts;
+//  }
 
-  public List<UserMonthlyExpenses> getUserMonthlyExpense() {
-    return userMonthlyExpense;
-  }
 
-  public void setUserMonthlyExpense(List<UserMonthlyExpenses> userMonthlyExpense) {
-    this.userMonthlyExpense = userMonthlyExpense;
-  }
 
-  public BufferedReader getReader() {
-    return reader;
-  }
+//  public List<UserMonthlyExpenses> getUserMonthlyExpense() {
+//    return userMonthlyExpense;
+//  }
+//
+//  public void setUserMonthlyExpense(List<UserMonthlyExpenses> userMonthlyExpense) {
+//    this.userMonthlyExpense = userMonthlyExpense;
+//  }
 
-  public void setReader(BufferedReader reader) {
-    this.reader = reader;
+
+  public List<Expense> getExpenses() {
+    return expenses;
   }
 
   public Double getBasicDebts() {
@@ -148,15 +160,15 @@ public class UserMonthlyExpenses {
     this.totalMonthlyExpense = totalMonthlyExpense;
   }
 
-  //  public MonthlyExpensesType getUserMonthlyExpensesType() {
+  //  public ExpenseType getUserMonthlyExpensesType() {
 //    return userMonthlyExpensesType;
 //  }
 //
-//  public void setUserMonthlyExpensesType(MonthlyExpensesType userMonthlyExpensesType) {
+//  public void setUserMonthlyExpensesType(ExpenseType userMonthlyExpensesType) {
 //    this.userMonthlyExpensesType = userMonthlyExpensesType;
 //  }
 //
-//  MonthlyExpensesType userMonthlyExpensesType;
+//  ExpenseType userMonthlyExpensesType;
 //  double amount;
 
   public UserMonthlyExpenses() {
@@ -164,12 +176,12 @@ public class UserMonthlyExpenses {
 
 
 
-//  public UserMonthlyExpenses(MonthlyExpensesType userMonthlyExpensesType, double amount) {
+//  public UserMonthlyExpenses(ExpenseType userMonthlyExpensesType, double amount) {
 //    this.userMonthlyExpensesType = userMonthlyExpensesType;
 //    this.amount = amount;
 //  }
 //
-//  public MonthlyExpensesType getUserMonthlyExpensesType() {
+//  public ExpenseType getUserMonthlyExpensesType() {
 //    return userMonthlyExpensesType;
 //  }
 

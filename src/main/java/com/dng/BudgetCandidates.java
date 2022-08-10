@@ -8,22 +8,22 @@ public class BudgetCandidates {
     //Calculate Total amount available for budgeting each month.
     // basic debts + monthly expense + monthly mortgage or rent
 
-    Double totalAvailableBudget = BudgetCandidates.calculateAvailableBudget(userInput.debt.isHomeOwner(),
-        userInput.debt.getMonthlyIncome(), userInput.debt.getTotalMonthlyDebtPayment(),
-        userInput.debt.getTotalMonthlyExpenses(), userInput.debt.getMonthlyRent(), userInput.debt.getMonthlyMortgage());
+    Double totalAvailableBudget = BudgetCandidates.calculateAvailableBudget(userInput.getProfile().isHomeOwner(),
+        userInput.getProfile().getMonthlyIncome(), userInput.getProfile().getTotalMonthlyDebtPayment(),
+        userInput.getProfile().getTotalMonthlyExpenses(), userInput.getProfile().getMonthlyRent(), userInput.getProfile().getMonthlyMortgage());
 
-    giveBudgetAdvice(userInput.debt.getMonthlyIncome(), userInput.debt.getTotalAvailableBudget());
+    giveBudgetAdvice(userInput.getProfile().getMonthlyIncome(), userInput.getProfile().getTotalAvailableBudget());
 
   }
 
-  private static void giveBudgetAdvice(Double annualIncome, Double totalAvailableBudget) {
-    Double monthlyIncome = annualIncome/12;
+  private static void giveBudgetAdvice(Double monthlyIncome, Double totalAvailableBudget) {
+
 
     if(totalAvailableBudget <= 0) {
       //TO-DO
       System.out.println("Total Available Budget less than 0. You will need to think hard on how to manage your money.");
     }
-    else if (totalAvailableBudget <= UserInput.debt.getMonthlyIncome() * 0.20) {
+    else if (totalAvailableBudget <= monthlyIncome * 0.20) {
       //TO-DO
       System.out.println("f budget amount is less than a certain threshold,  \n"
           + "Issue a warning about overspending and maybe cutting down on miscellaneous expenses.\n"

@@ -2,7 +2,7 @@ package com.dng;
 
 public class UserMonthlyExpenses {
   UserMonthlyExpensesType userMonthlyExpensesType;
-  double amount;
+  private double amount;
 
   public UserMonthlyExpenses(UserMonthlyExpensesType userMonthlyExpensesType, double amount) {
     this.userMonthlyExpensesType = userMonthlyExpensesType;

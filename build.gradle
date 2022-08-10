@@ -8,7 +8,7 @@ java{
     }
 }
 
-group 'com.dgn'
+group 'com.dng'
 version '1.0-SNAPSHOT'
 
 repositories {

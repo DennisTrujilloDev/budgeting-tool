@@ -1,4 +1,4 @@
-package com.dgn.budgeting;
+package com.dng;
 
 public abstract class Keys {
   static final String FIRST_MSG_INPUT_NAME = "beginning";

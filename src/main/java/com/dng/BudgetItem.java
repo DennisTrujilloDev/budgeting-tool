@@ -3,9 +3,9 @@ package com.dng;
 public class BudgetItem {
 
   public static final double EMRGENCY_FUND_CONSTANT = 0.10;
-  public static final double SAVINGS_CONSTANT = 0.15;
-  public static final double MISCELLENAOUS_CONSTANT = 0.40;
-  public static final double FOOD_CONSTANT = 0.35;
+  public static final double SAVINGS_CONSTANT = 0.10;
+  public static final double MISCELLENAOUS_CONSTANT = 0.30;
+  public static final double FOOD_CONSTANT = 0.05;
 
   //fields..
   double income;

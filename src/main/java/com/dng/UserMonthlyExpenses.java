@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class UserMonthlyExpenses {
 
-  public String userMonthlyExpensesType;
+//  public String userMonthlyExpensesType;
 
-  String name;
+  private String name;
 
-  boolean homeOwner;
+  private boolean homeOwner;
   Double monthlyMortgage = 0.0;
   Double monthlyRent = 0.0;
   Double monthlyIncome = 0.0;

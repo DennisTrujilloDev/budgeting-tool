@@ -100,7 +100,7 @@ public class UserInput {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
     }
-    System.out.println("Annual Income: " + profile.monthlyIncome);
+//    System.out.println("Annual Income: " + profile.monthlyIncome);
   }
 
   private void isUserHomewonerOrRenter() throws IOException {
@@ -125,7 +125,7 @@ public class UserInput {
     //User prompt
     System.out.println(
         "\t\t\t~Debt Payments~\n"
-            + "Debt payments are any payments you make on a monthly basis to pay back a creditor or lender for money you borrowed.\nNote: Enter '0' if debt category does not apply.");
+            + "Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
     double sum = 0.0;
     for (DebtType type : DebtType.values()) {
 
@@ -164,7 +164,7 @@ public class UserInput {
 
       while (true) {
 
-        System.out.println("Enter monthly amount spent on your " + type + "?");
+        System.out.println("Enter total monthly amount spent on (your) " + type);
         //System.out.println("Enter monthly amount spent on " + debt.userMonthlyExpense.get(i).expensesType + "?");
 
         String totalMonthlyExpensesStr = reader.readLine();
@@ -186,7 +186,7 @@ public class UserInput {
 
   private void collectTotalMortgageOrRent() throws IOException {
     //If the user is a home owner, ask how much mortgage do they pay
-    if (profile.homeOwner) {
+    if (profile.isHomeOwner()) {
       while (true) {
         System.out.println("How much do you pay in mortgage each month?");
         String mortgageStr = reader.readLine();
@@ -215,12 +215,13 @@ public class UserInput {
     }
 
     //If the user is not a homeowner (renter), ask how much rent do they pay
-    if (!profile.homeOwner) {
+    if (!profile.isHomeOwner()) {
       while (true) {
         System.out.println("How much rent do you pay each month?");
         String rentStr = reader.readLine();
         try {
-          profile.monthlyRent = Double.parseDouble(rentStr);
+          profile.setMonthlyRent(Double.parseDouble(rentStr));
+          //should be using getter
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect input. Please enter valid number.");

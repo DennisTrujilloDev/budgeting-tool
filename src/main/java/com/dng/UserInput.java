@@ -123,14 +123,23 @@ public class UserInput {
    * @throws IOException signals a failed input/output operation
    */
   public void getMonthlyDebt() throws IOException {
-    System.out.println(
-        "\t\t\t~Debt Payments~\n"
-            + "Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
+    StringBuilder str = new StringBuilder();
+    str.append("\t\t\t~Debt Payments~\n");
+    str.append("Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
+    System.out.println(str);
+//    System.out.println(
+//        "\t\t\t~Debt Payments~\n"
+//            + "Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
     double sum = 0.0;
     for (DebtType type : DebtType.values()) {
       double debtX;
       while (true) {
-        System.out.println("Enter " + type + " monthly payment:");
+        StringBuilder strTwo = new StringBuilder();
+        strTwo.append("Enter ");
+        strTwo.append(type);
+        strTwo.append(" monthly payment:");
+        System.out.println(strTwo);
+//        System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
         try {
           if (Double.parseDouble(debtStr) < 0 || Double.parseDouble(debtStr) > 500000) {
@@ -150,7 +159,11 @@ public class UserInput {
             "You owe more than you make. Please seek advice from a professional financial advisor.");
       }
     }
-    System.out.printf("%1$s, your total debt payments equal: %2$s \n", profile.getName(), sum);
+    StringBuilder strThree = new StringBuilder();
+    strThree.append(profile.getName());
+    strThree.append(", your total debt payments equal: ");
+    strThree.append(sum);
+    System.out.println(strThree);
     profile.setBasicDebts(sum);
   }
 
@@ -159,14 +172,17 @@ public class UserInput {
    * @throws IOException signals a failed input/output operation
    */
   private void getMonthlyExpenses() throws IOException {
-
     System.out.println("\t\t\t~Basic Living Expenses~\nEnter '0' if expense does not apply ");
-
     double sum = 0.0;
     for (ExpenseType type : ExpenseType.values()) {
       double amount;
       while (true) {
-        System.out.println("Total amount spent (monthly) " + type + ":");
+        StringBuilder strThree = new StringBuilder();
+        strThree.append("Total amount spent (monthly) on ");
+        strThree.append(type);
+        strThree.append(":");
+        System.out.println(strThree);
+//        System.out.println("Total amount spent (monthly) on" + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();
         try {
           if (Double.parseDouble(totalMonthlyExpensesStr) < 0 || Double.parseDouble(totalMonthlyExpensesStr) > 500000) {
@@ -184,7 +200,11 @@ public class UserInput {
 //      System.out.println("your monthly payment: " + amount);
       sum += amount;
     }
-    System.out.println("Basic monthly expense total: " + fmt.format(sum));
+    StringBuilder str = new StringBuilder();
+    str.append("Basic monthly expense total: ");
+    str.append(fmt.format(sum));
+    System.out.println(str);
+//    System.out.println("Basic monthly expense total: " + fmt.format(sum));
     profile.setTotalMonthlyExpense(sum);
   }
 
@@ -197,7 +217,7 @@ public class UserInput {
   private void collectTotalMortgageOrRent() throws IOException {
     if (profile.isHomeOwner()) {
       while (true) {
-        System.out.println("How much do you pay in mortgage each month?");
+        System.out.println("What is your monthly mortgage payment?");
         String mortgageStr = reader.readLine();
         try {
           if (Double.parseDouble(mortgageStr) < 0 || Double.parseDouble(mortgageStr) > 500000){

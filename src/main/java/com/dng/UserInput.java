@@ -57,12 +57,14 @@ public class UserInput {
 
 
     if (budgetAmount < 0) {
-      System.out.printf("%1$s , a budget can not be created for you at this time. "
-              + "You are in debt. Please see a financial councillor as soon as possible.\n"
+      System.out.printf("Sorry %1$s , a budget can not be created for you at this time. "
+              + "You are in debt. Please see a financial advisor as soon as possible.\n"
               + "Also consider the following options:\n"
-              + "\t 1.\tEvaluate your fixed expenses and see if there’s any chance you can save money on them.\n"
+              + "\t 1.\tEvaluate your fixed expenses and see if there’s any chance you can"
+              + " save money on them.\n"
               + "\t 2.\tIs there any opportunity to switch to a cheaper car insurance policy?\n"
-              + "\t 3.\tCan you renegotiate your credit card interest to get a lower rate and pay off your debt faster?\n\n",
+              + "\t 3.\tCan you renegotiate your credit card interest to get a lower rate and "
+              + "pay off your debt faster?\n\n",
           profile.getName());
     } else if ( budgetAmount >0 && budgetAmount <= 0.65 * income) {
 

@@ -1,36 +1,31 @@
 package com.dng;
 
-import java.io.BufferedReader;
+import com.dng.model.Expense;
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
-
+/**
+ * This class contains the fields and methods of the class
+ */
 public class UserMonthlyExpenses {
-
-  public String userMonthlyExpensesType;
 
   String name;
 
-  boolean homeOwner;
+  private boolean homeOwner;
   Double monthlyMortgage = 0.0;
   Double monthlyRent = 0.0;
   private Double monthlyIncome = 0.0;
   private Double totalMonthlyDebtPayment = 0.0;
-  private Double totalMonthlyExpenses = 0.0;
+  //private Double totalMonthlyExpenses = 0.0;
 
   private Double basicDebts=0.0;
-  private Double totalAvailableBudget = 0.0;
+
 
   private Double totalMonthlyExpense=0.0;
-//  boolean isEligibleForBudgeting = false;
 
 
   List<Debt> debts = new ArrayList<>();
   List<Expense> expenses = new ArrayList<>();
-
-
 
 
   public String getName() {
@@ -80,30 +75,6 @@ public class UserMonthlyExpenses {
   public void setTotalMonthlyDebtPayment(Double totalMonthlyDebtPayment) {
     this.totalMonthlyDebtPayment = totalMonthlyDebtPayment;
   }
-
-  public Double getTotalMonthlyExpenses() {
-    return totalMonthlyExpenses;
-  }
-
-  public void setTotalMonthlyExpenses(Double totalMonthlyExpenses) {
-    this.totalMonthlyExpenses = totalMonthlyExpenses;
-  }
-
-  public Double getTotalAvailableBudget() {
-    return totalAvailableBudget;
-  }
-
-  public void setTotalAvailableBudget(Double totalAvailableBudget) {
-    this.totalAvailableBudget = totalAvailableBudget;
-  }
-
-//  public boolean isEligibleForBudgeting() {
-//    return isEligibleForBudgeting;
-//  }
-//
-//  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
-//    isEligibleForBudgeting = eligibleForBudgeting;
-//  }
 
   public List<Debt> getDebts() {
     return debts;

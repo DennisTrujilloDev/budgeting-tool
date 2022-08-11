@@ -1,8 +1,5 @@
 package com.dng;
 
-import com.dng.model.DebtType;
-import com.dng.model.Expense;
-import com.dng.model.ExpenseType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +16,7 @@ import java.util.Locale;
 
 public class UserInput {
 
-  Locale locale = new Locale("en", "US");
+  Locale locale = new Locale("en", "UK");
 //  NumberFormat fmt = NumberFormat.getCurrencyInstance();
   NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
   Calendar calendar = Calendar.getInstance();

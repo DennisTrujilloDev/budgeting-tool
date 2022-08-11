@@ -12,7 +12,7 @@
 //
 //}
 
-package com.dng.model;
+package com.dng;
 public enum DebtType {
   CAR_LOAN               ("Car Loan"),
   MEDICAL_BILLS          ("Medical Bills"),

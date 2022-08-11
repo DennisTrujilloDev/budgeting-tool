@@ -104,11 +104,11 @@ public class UserInput {
     while (true) {
       System.out.println("What is your monthly income?");
       String monthlyIncomeStr = reader.readLine();
-      if (Double.parseDouble(monthlyIncomeStr) < 1) {
-        System.out.println("Please enter a value larger than or equal to 1.");
-        continue;
-      }
       try {
+        if (Double.parseDouble(monthlyIncomeStr) < 1) {
+          System.out.println("Please enter a value larger than or equal to 1.");
+          continue;
+        }
         profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
         break;
       } catch (NumberFormatException e) {
@@ -158,11 +158,11 @@ public class UserInput {
       while (true) {
         System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
-        if (Double.parseDouble(debtStr) < 0){
-          System.out.println("Please enter a value larger than or equal to 0.");
-          continue;
-        }
         try {
+          if (Double.parseDouble(debtStr) < 0) {
+            System.out.println("Please enter a value larger than or equal to 0.");
+            continue;
+          }
           debtX = Double.parseDouble(debtStr);
           profile.getDebts().add(new Debt(type, debtX));
           break;
@@ -195,11 +195,11 @@ public class UserInput {
       while (true) {
         System.out.println("Total amount spent (monthly) " + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();
-        if (Double.parseDouble(totalMonthlyExpensesStr) < 0){
-          System.out.println("Please enter a value larger than or equal to 0.");
-          continue;
-        }
         try {
+          if (Double.parseDouble(totalMonthlyExpensesStr) < 0) {
+            System.out.println("Please enter a value larger than or equal to 0.");
+            continue;
+          }
           amount = Double.parseDouble(totalMonthlyExpensesStr);
           profile.getExpenses().add(new Expense(type, amount));
           break;
@@ -215,6 +215,7 @@ public class UserInput {
     profile.setTotalMonthlyExpense(sum);
   }
 
+
   /**
    * This method asks users that are homeowners how much their mortgage is (if any), and the those
    * that are renters how much they allocate towards rent. The responses are then saved.
@@ -226,11 +227,11 @@ public class UserInput {
       while (true) {
         System.out.println("How much do you pay in mortgage each month?");
         String mortgageStr = reader.readLine();
-        if (Double.parseDouble(mortgageStr) < 0){
-          System.out.println("Please enter a value larger than or equal to 0.");
-          continue;
-        }
         try {
+          if (Double.parseDouble(mortgageStr) < 0){
+            System.out.println("Please enter a value larger than or equal to 0.");
+            continue;
+          }
           profile.setMonthlyMortgage(Double.parseDouble(mortgageStr));
           break;
         } catch (NumberFormatException e) {

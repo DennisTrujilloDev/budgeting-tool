@@ -1,7 +1,8 @@
 package com.dng;
 
 /**
- * This class is responsible for giving suggestions as to where to allocate any money available for budgeting.
+ * This class is responsible for giving suggestions as to where to allocate any money available for
+ * budgeting.
  */
 public class BudgetItem {
 
@@ -14,7 +15,8 @@ public class BudgetItem {
 
   /**
    * This constructor initializes the instances of this class.
-   * @param income the user's monthly salary
+   *
+   * @param income        the user's monthly salary
    * @param totalExpenses the user's total monthly expenses
    */
   public BudgetItem(double income, double totalExpenses) {
@@ -24,6 +26,7 @@ public class BudgetItem {
 
   /**
    * This method calculates the amount the user has available for budgeting.
+   *
    * @return the calculation as a double
    */
   public double budgetAmount() {
@@ -32,33 +35,37 @@ public class BudgetItem {
 
   /**
    * This method calculates the recommended amount to allocate towards an emergency fund.
+   *
    * @return an object representation of the calculation.
    */
-  public Object calculateEmergencyFund(){
+  public Object calculateEmergencyFund() {
     return budgetAmount() * EMERGENCY_FUND;
   }
 
   /**
    * This method calculates the recommended amount to allocate towards a savings account.
-   *@return an object representation of the calculation.
+   *
+   * @return an object representation of the calculation.
    */
-  public Object calculateSavings(){
+  public Object calculateSavings() {
     return budgetAmount() * SAVINGS;
   }
 
   /**
    * This method calculates the recommended amount to allocate to miscellaneous expenses.
+   *
    * @return an object representation of the calculation.
    */
-  public Object calculateMiscellaneous(){
+  public Object calculateMiscellaneous() {
     return budgetAmount() * MISCELLANEOUS;
   }
 
   /**
    * This method calculates the recommended amount to allocate towards groceries.
+   *
    * @return an object representation of the calculation
    */
-  public Object calculateFoodBudget(){
+  public Object calculateFoodBudget() {
     return budgetAmount() * FOOD;
   }
 

@@ -15,9 +15,7 @@ public class UserInput {
 
   private final Locale locale = new Locale("en", "US");
   private final NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
-
   private final UserMonthlyExpenses profile = new UserMonthlyExpenses();
-
   private final BufferedReader reader;
 
   /**
@@ -73,7 +71,6 @@ public class UserInput {
           StringBuilder strThree = new StringBuilder();
           strThree.append("Monthly income must be between 1 and 1,000,000 to qualify for this service.");
           System.out.println(strThree);
-//          System.out.println("Monthly income must be between 1 and 1,000,000 to qualify for this service.");
           continue;
         }
         profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
@@ -82,12 +79,10 @@ public class UserInput {
         StringBuilder strTwo = new StringBuilder();
         strTwo.append("Incorrect Input. Please enter valid number.");
         System.out.println(strTwo);
-//        System.out.println("Incorrect Input. Please enter valid number.");
       }
 
     }
 
-//    System.out.println("Annual Income: " + profile.getMonthlyIncome());
   }
 
   /**
@@ -99,7 +94,6 @@ public class UserInput {
       StringBuilder str = new StringBuilder();
       str.append("Are you a home owner? Y for Yes, N for No.");
       System.out.println(str);
-//      System.out.println("Are you a home owner? Y for Yes, N for No.");
       String homeOwner = reader.readLine();
       if (homeOwner.equalsIgnoreCase("y")) {
         profile.setHomeOwner(true);
@@ -111,7 +105,6 @@ public class UserInput {
         StringBuilder strTwo = new StringBuilder();
         strTwo.append("Please input correct option.");
         System.out.println(strTwo);
-//        System.out.println("Please input correct option.");
       }
     }
   }
@@ -127,19 +120,14 @@ public class UserInput {
     str.append("\t\t\t~Debt Payments~\n");
     str.append("Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
     System.out.println(str);
-//    System.out.println(
-//        "\t\t\t~Debt Payments~\n"
-//            + "Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
     double sum = 0.0;
     for (DebtType type : DebtType.values()) {
       double debtX;
       while (true) {
         StringBuilder strTwo = new StringBuilder();
-        strTwo.append("Enter ");
+        strTwo.append("Enter the total monthly amount you put towards ");
         strTwo.append(type);
-        strTwo.append(" monthly payment:");
         System.out.println(strTwo);
-//        System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
         try {
           if (Double.parseDouble(debtStr) < 0 || Double.parseDouble(debtStr) > 500000) {
@@ -182,7 +170,6 @@ public class UserInput {
         strThree.append(type);
         strThree.append(":");
         System.out.println(strThree);
-//        System.out.println("Total amount spent (monthly) on" + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();
         try {
           if (Double.parseDouble(totalMonthlyExpensesStr) < 0 || Double.parseDouble(totalMonthlyExpensesStr) > 500000) {
@@ -197,14 +184,12 @@ public class UserInput {
         }
 
       }
-//      System.out.println("your monthly payment: " + amount);
       sum += amount;
     }
     StringBuilder str = new StringBuilder();
     str.append("Basic monthly expense total: ");
     str.append(fmt.format(sum));
     System.out.println(str);
-//    System.out.println("Basic monthly expense total: " + fmt.format(sum));
     profile.setTotalMonthlyExpense(sum);
   }
 

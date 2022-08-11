@@ -1,4 +1,0 @@
-boolean value fields don't start with is, but method identifiers do
-naming conventions
-
-in userinput loops, change souts to stringbuilder

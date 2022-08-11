@@ -17,19 +17,4 @@ public class Expense {
     this.totalExpense = amount;
   }
 
-//  public ExpenseType getExpenseType() {
-//    return expenseType;
-//  }
-//
-//  public void setExpenseType(ExpenseType expenseType) {
-//    this.expenseType = expenseType;
-//  }
-//
-//  public double getAmount() {
-//    return totalExpense;
-//  }
-//
-//  public void setAmount(double amount) {
-//    this.totalExpense = amount;
-//  }
 }

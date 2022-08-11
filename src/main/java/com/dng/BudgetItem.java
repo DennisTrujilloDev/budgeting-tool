@@ -9,13 +9,8 @@ public class BudgetItem {
   private static final double SAVINGS = 0.15;
   private static final double MISCELLANEOUS = 0.40;
   private static final double FOOD = 0.35;
-
-  //fields..
   private final double income;
   private final double debt;
-  private double amount;
-
-//  double debtplusExpenses;
 
   /**
    * This constructor initializes the instances of this class.
@@ -27,59 +22,45 @@ public class BudgetItem {
     this.debt = totalExpenses;
   }
 
-//  public BudgetItem() {
-//
-//  }
-
-//  public double getDebt() {
-//    return debt;
-//  }
-//  public void setDebt(double debt) {
-//    this.debt = debt;
-//  }
-
   /**
    * This method calculates the amount the user has available for budgeting.
+   * @return the calculation as a double
    */
   public double budgetAmount() {
-//    double budgetAmount = (income- debt);
-//    return budgetAmount;
     return (income - debt);
   }
 
   /**
    * This method calculates the recommended amount to allocate towards an emergency fund.
+   * @return an object representation of the calculation.
    */
   public Object calculateEmergencyFund(){
-    amount = budgetAmount() * EMERGENCY_FUND;
-    return amount;
-
+    return budgetAmount() * EMERGENCY_FUND;
   }
 
   /**
    * This method calculates the recommended amount to allocate towards a savings account.
+   *@return an object representation of the calculation.
    */
   public Object calculateSavings(){
-    amount = budgetAmount() * SAVINGS;
-    return amount;
+    return budgetAmount() * SAVINGS;
   }
 
   /**
    * This method calculates the recommended amount to allocate to miscellaneous expenses.
+   * @return an object representation of the calculation.
    */
   public Object calculateMiscellaneous(){
-    amount = budgetAmount() * MISCELLANEOUS;
-    return amount;
+    return budgetAmount() * MISCELLANEOUS;
   }
 
   /**
    * This method calculates the recommended amount to allocate towards groceries.
+   * @return an object representation of the calculation
    */
   public Object calculateFoodBudget(){
-    amount = budgetAmount() * FOOD;
-    return amount;
+    return budgetAmount() * FOOD;
   }
-
 
 }
 

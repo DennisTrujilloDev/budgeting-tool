@@ -25,6 +25,7 @@ public enum ExpenseType {
 
   /**
    * This method overrides the toString method, modifying the way the enum constants can be displayed.
+   * @return a readable string representation of the types of expenses a user may have.
    */
   @Override
   public String toString() {

@@ -84,7 +84,6 @@ public class UserInput {
 
   /**
    * This method asks the user their name then greets them accordingly.
-   *
    * @throws IOException
    */
   private void welcomeMessage() throws IOException {
@@ -176,7 +175,7 @@ public class UserInput {
             "You owe more than you make. Please seek advice from a professional financial advisor.");
       }
     }
-    System.out.printf("%1$s, your monthly debt payment is: %2$s \n", profile.getName(), sum);
+    System.out.printf("%1$s, your total debt payments equal: %2$s \n", profile.getName(), sum);
     profile.setBasicDebts(sum);
   }
 
@@ -187,7 +186,7 @@ public class UserInput {
    */
   private void getMonthlyExpenses() throws IOException {
 
-    System.out.println("\t\t\t~Expenses~\nEnter '0' if expense does not apply ");
+    System.out.println("\t\t\t~Basic Living Expenses~\nEnter '0' if expense does not apply ");
 
     double sum = 0.0;
     for (ExpenseType type : ExpenseType.values()) {
@@ -247,10 +246,10 @@ public class UserInput {
 
       profile.setTotalMonthlyDebtPayment(
           profile.getBasicDebts() + profile.getMonthlyMortgage()
-              + profile.getTotalMonthlyExpense());
+              + profile.getTotalMonthlyExpense() );
 
       System.out.println(
-          "Monthly debt homeowner: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+          "Total expenses: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
 
     if (!profile.isHomeOwner()) {
@@ -258,19 +257,23 @@ public class UserInput {
         System.out.println("How much rent do you pay each month?");
         String rentStr = reader.readLine();
         try {
+          if (Double.parseDouble(rentStr) < 0){
+            System.out.println("Please enter a value larger than or equal to 0.");
+            continue;
+          }
           profile.setMonthlyRent(Double.parseDouble(rentStr));
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect input. Please enter valid number.");
         }
       }
-      System.out.println("Monthly rent: " + fmt.format(profile.getMonthlyRent() + "\n"));
+      System.out.println("Monthly rent: " + fmt.format(profile.getMonthlyRent()) + "\n");
       profile.setMonthlyRent(profile.getMonthlyRent());
 
       profile.setTotalMonthlyDebtPayment(
           profile.getBasicDebts() + profile.getMonthlyRent() + profile.getTotalMonthlyExpense());
-//      System.out.println(
-//          "Monthly debt as a renter:  " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+      System.out.println(
+          "Total expenses:  " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
   }
 

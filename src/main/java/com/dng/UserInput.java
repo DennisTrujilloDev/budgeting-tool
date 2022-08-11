@@ -94,14 +94,14 @@ public class UserInput {
   }
 
   /**
-   * This method
+   * This method asks for then saves the user's monthly income.
    */
   private void askForMonthlyIncome() throws IOException {
     while (true) {
+      System.out.println("What is your monthly income?");
+      String monthlyIncomeStr = reader.readLine();
       try {
-        System.out.println("What is your monthly income?");
-//        String monthlyIncomeStr =
-            reader.readLine();
+        profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
         break;
       } catch (NumberFormatException e) {
         System.out.println("Incorrect Input. Please enter valid number.");
@@ -110,6 +110,10 @@ public class UserInput {
 //    System.out.println("Annual Income: " + profile.getMonthlyIncome());
   }
 
+  /**
+   * This method asks the user if they own a home or rent and saves their response.
+   * @throws IOException
+   */
   private void isUserHomeOwnerOrRenter() throws IOException {
     while (true) {
       System.out.println("Are you a home owner? Y for Yes, N for No.");
@@ -127,53 +131,51 @@ public class UserInput {
   }
 
 
+  /**
+   * This method asks the user about recurring debt payments, then records the amount they allocate
+   * towards these payments.
+   * @throws IOException
+   */
   public void getMonthlyDebt() throws IOException {
-
-    //User prompt
     System.out.println(
         "\t\t\t~Debt Payments~\n"
             + "Debt payments are any payments you make on a monthly basis to a creditor or lender for any money you owe.\nNote: Enter '0' if debt category does not apply.");
     double sum = 0.0;
     for (DebtType type : DebtType.values()) {
-
-      double debtx = 0.0;
+      double debtX;
       while (true) {
         System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
-
         try {
-          debtx = Double.parseDouble(debtStr);
-          profile.getDebts().add(new Debt(type, debtx));
-
+          debtX = Double.parseDouble(debtStr);
+          profile.getDebts().add(new Debt(type, debtX));
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect Input. Please enter valid number.");
         }
       }
-
-      sum = sum + debtx;
-
+      sum += debtX;
+      if(sum >= profile.getMonthlyIncome()){
+        System.out.println("You owe more than you make. Please seek advice from a professional financial advisor.");
+      }
     }
     System.out.printf("%1$s, your monthly debt payment is: %2$s \n", profile.getName(), sum);
     profile.setBasicDebts(sum);
-//TODO if monthly debt is greater than income, Introduce logic to advice user
-
   }
 
+  /**
+   * This method calculates and saves the user's monthly expenses.
+   * @throws IOException
+   */
   private void getMonthlyExpenses() throws IOException {
 
     System.out.println("\t\t\t~Expenses~\nEnter '0' if expense does not apply ");
 
     double sum = 0.0;
     for (ExpenseType type : ExpenseType.values()) {
-//     for (int i = 0; i < debt.userMonthlyExpense.size(); i++) {
       double amount = 0;
-
       while (true) {
-
         System.out.println("Enter total monthly amount spent on (your) " + type);
-        //System.out.println("Enter monthly amount spent on " + debt.userMonthlyExpense.get(i).expensesType + "?");
-
         String totalMonthlyExpensesStr = reader.readLine();
         try {
           amount = Double.parseDouble(totalMonthlyExpensesStr);
@@ -182,39 +184,45 @@ public class UserInput {
         } catch (NumberFormatException e) {
           System.out.println("Incorrect Input. Please enter valid number.");
         }
+
       }
 //      System.out.println("your monthly payment: " + amount);
-      sum = sum + amount;
+      sum += amount;
     }
     System.out.println("basic expense total: " + fmt.format(sum));
     profile.setTotalMonthlyExpense(sum);
   }
 
-
+  /**
+   * This method asks users that are homeowners how much their mortgage is (if any),
+   * and the those that are renters how much they allocate towards rent. The responses are then
+   * saved.
+   * @throws IOException
+   */
   private void collectTotalMortgageOrRent() throws IOException {
-    //If the user is a home owner, ask how much mortgage do they pay
     if (profile.isHomeOwner()) {
       while (true) {
         System.out.println("How much do you pay in mortgage each month?");
         String mortgageStr = reader.readLine();
 
         try {
-          profile.monthlyMortgage = Double.parseDouble(mortgageStr);
+          profile.setMonthlyMortgage(Double.parseDouble(mortgageStr));
           break;
-        } catch (NumberFormatException e) {
-          System.out.println("Incorrect Input. Please enter valid number.");
         }
+          catch(NumberFormatException e) {
+            System.out.println("Incorrect Input. Please enter valid number.");
+          }
       }
-      System.out.println("Monthly Mortgage: " + fmt.format(profile.monthlyMortgage));
+      System.out.println("Monthly Mortgage: " + fmt.format(profile.getMonthlyMortgage()));
 
-      profile.setMonthlyMortgage(profile.monthlyMortgage);
+      profile.setMonthlyMortgage(profile.getMonthlyMortgage());
       //Calculates Total payment made in a month (expenses + basic debt + mortgage)
 
       //TODO add miscellaneous expenses
 
-      profile.setTotalMonthlyDebtPayment(
-          profile.getBasicDebts() + profile.getMonthlyMortgage()
-              + profile.getTotalMonthlyExpense());
+//      profile.setTotalMonthlyDebtPayment(
+//          profile.getBasicDebts() + profile.getMonthlyMortgage()
+//              + profile.getTotalMonthlyExpense());
 
       // Get Total monthly payment and print out the amount
       System.out.println(

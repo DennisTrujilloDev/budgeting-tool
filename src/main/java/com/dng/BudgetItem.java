@@ -2,10 +2,18 @@ package com.dng;
 
 public class BudgetItem {
 
+  //TODO Create constants for Good standing as well as Closer to threshhold using 50/30/20
   public static final double EMRGENCY_FUND_CONSTANT = 0.10;
-  public static final double SAVINGS_CONSTANT = 0.10;
-  public static final double MISCELLENAOUS_CONSTANT = 0.30;
+  public static final double SAVINGS_CONSTANT = 0.05;
+  public static final double MISCELLENAOUS_CONSTANT = 0.10;
   public static final double FOOD_CONSTANT = 0.05;
+
+
+  public static final double EMRGENCY_FUND_CONSTANT_GS = 0.10;
+  public static final double SAVINGS_CONSTANT_GS = 0.10;
+  public static final double MISCELLENAOUS_CONSTANT_GS = 0.30;
+  public static final double FOOD_CONSTANT_GS= 0.05;
+
 
   //fields..
   double income;
@@ -57,6 +65,29 @@ public class BudgetItem {
     double amount = budgetAmount() * FOOD_CONSTANT;
     return amount;
   }
+
+
+  public Object calculateEmergencyFundG(){
+    double amount = budgetAmount() * EMRGENCY_FUND_CONSTANT_GS;
+    return amount;
+
+  }
+  //Method to calculate recommended amount for savings
+  public Object calculateSavingsG(){
+    double amount = budgetAmount() * SAVINGS_CONSTANT_GS;
+    return amount;
+  }
+  //Method to calculate recommended amount for miscellaneous
+  public Object calculateMiscellanousG(){
+    double amount = budgetAmount() * MISCELLENAOUS_CONSTANT_GS;
+    return amount;
+  }
+  //Method to calculate recommended amount for food
+  public Object calculateFoodBudgetG(){
+    double amount = budgetAmount() * FOOD_CONSTANT_GS;
+    return amount;
+  }
+
 
 
 }

@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * This class is responsible for asking the user the information needed for
- * the application to run adequately.
+ * This class is responsible for asking the user the information needed for the application to run
+ * adequately.
  */
 public class UserInput {
 
@@ -21,8 +21,9 @@ public class UserInput {
   private final BufferedReader reader;
 
   /**
-   * The UserInput constructor runs the method that display questions to the user.
-   * Their answers to the questions are saved in a variable via a setter.
+   * The UserInput constructor runs the method that display questions to the user. Their answers to
+   * the questions are saved in a variable via a setter.
+   *
    * @throws IOException
    */
   public UserInput() throws IOException {
@@ -53,14 +54,16 @@ public class UserInput {
   }
 
   /**
-   * This method displays the amount the user has available for budgeting (after expenses).
-   * It then displays some recommendations for specific amounts the user should allocate towards
-   * specific areas according to the user's personal finances.
-   *
+   * This method displays the amount the user has available for budgeting (after expenses). It then
+   * displays some recommendations for specific amounts the user should allocate towards specific
+   * areas according to the user's personal finances.
    */
   private void displayBudget() {
-    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.getTotalMonthlyDebtPayment());
-    System.out.println("------------------------------------\nAmount available for budgeting:" + fmt.format(budget.budgetAmount())+ "\n------------------------------------");
+    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(),
+        profile.getTotalMonthlyDebtPayment());
+    System.out.println(
+        "------------------------------------\nAmount available for budgeting:" + fmt.format(
+            budget.budgetAmount()) + "\n------------------------------------");
     System.out.printf("Recommended Savings: %2s %n", fmt.format(budget.calculateSavings()));
     System.out.printf("Recommended EmergencyFund: %2s%n",
         fmt.format(budget.calculateEmergencyFund()));
@@ -71,7 +74,8 @@ public class UserInput {
   }
 
   /**
-   *This accessor method returns the value of the private variable profile.
+   * This accessor method returns the value of the private variable profile.
+   *
    * @return
    */
   public UserMonthlyExpenses getProfile() {
@@ -80,6 +84,7 @@ public class UserInput {
 
   /**
    * This method asks the user their name then greets them accordingly.
+   *
    * @throws IOException
    */
   private void welcomeMessage() throws IOException {
@@ -99,7 +104,7 @@ public class UserInput {
     while (true) {
       System.out.println("What is your monthly income?");
       String monthlyIncomeStr = reader.readLine();
-      if(Double.parseDouble(monthlyIncomeStr)<1){
+      if (Double.parseDouble(monthlyIncomeStr) < 1) {
         System.out.println("Please enter a value larger than or equal to 1.");
         continue;
       }
@@ -110,7 +115,6 @@ public class UserInput {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
 
-
     }
 
 //    System.out.println("Annual Income: " + profile.getMonthlyIncome());
@@ -118,6 +122,7 @@ public class UserInput {
 
   /**
    * This method asks the user if they own a home or rent and saves their response.
+   *
    * @throws IOException
    */
   private void isUserHomeOwnerOrRenter() throws IOException {
@@ -140,6 +145,7 @@ public class UserInput {
   /**
    * This method asks the user about recurring debt payments, then records the amount they allocate
    * towards these payments.
+   *
    * @throws IOException
    */
   public void getMonthlyDebt() throws IOException {
@@ -152,8 +158,13 @@ public class UserInput {
       while (true) {
         System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
+        debtX = Double.parseDouble(debtStr);
+        if (debtX < 0){
+          System.out.println("Please enter a value larger than or equal to 0.");
+          continue;
+        }
         try {
-          debtX = Double.parseDouble(debtStr);
+//          debtX = Double.parseDouble(debtStr);
           profile.getDebts().add(new Debt(type, debtX));
           break;
         } catch (NumberFormatException e) {
@@ -161,8 +172,9 @@ public class UserInput {
         }
       }
       sum += debtX;
-      if(sum >= profile.getMonthlyIncome()){
-        System.out.println("You owe more than you make. Please seek advice from a professional financial advisor.");
+      if (sum >= profile.getMonthlyIncome()) {
+        System.out.println(
+            "You owe more than you make. Please seek advice from a professional financial advisor.");
       }
     }
     System.out.printf("%1$s, your monthly debt payment is: %2$s \n", profile.getName(), sum);
@@ -171,6 +183,7 @@ public class UserInput {
 
   /**
    * This method calculates and saves the user's monthly expenses.
+   *
    * @throws IOException
    */
   private void getMonthlyExpenses() throws IOException {
@@ -200,9 +213,9 @@ public class UserInput {
   }
 
   /**
-   * This method asks users that are homeowners how much their mortgage is (if any),
-   * and the those that are renters how much they allocate towards rent. The responses are then
-   * saved.
+   * This method asks users that are homeowners how much their mortgage is (if any), and the those
+   * that are renters how much they allocate towards rent. The responses are then saved.
+   *
    * @throws IOException
    */
   private void collectTotalMortgageOrRent() throws IOException {
@@ -214,10 +227,9 @@ public class UserInput {
         try {
           profile.setMonthlyMortgage(Double.parseDouble(mortgageStr));
           break;
+        } catch (NumberFormatException e) {
+          System.out.println("Incorrect Input. Please enter valid number.");
         }
-          catch(NumberFormatException e) {
-            System.out.println("Incorrect Input. Please enter valid number.");
-          }
       }
       System.out.println("Monthly Mortgage: " + fmt.format(profile.getMonthlyMortgage()));
 

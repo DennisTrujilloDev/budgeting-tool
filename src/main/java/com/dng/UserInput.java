@@ -35,25 +35,6 @@ public class UserInput {
     displayBudget();
   }
 
-  /**
-   * This method displays the amount the user has available for budgeting (after expenses). It then
-   * displays some recommendations for specific amounts the user should allocate towards specific
-   * areas according to the user's personal finances.
-   */
-  private void displayBudget() {
-    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(),
-        profile.getTotalMonthlyDebtPayment());
-    System.out.println(
-        "------------------------------------\nAmount available for budgeting:" + fmt.format(
-            budget.budgetAmount()) + "\n------------------------------------");
-    System.out.printf("Recommended Savings: %2s %n", fmt.format(budget.calculateSavings()));
-    System.out.printf("Recommended EmergencyFund: %2s%n",
-        fmt.format(budget.calculateEmergencyFund()));
-    System.out.printf("Recommended budget for Food: %2s%n",
-        fmt.format(budget.calculateFoodBudget()));
-    System.out.printf("Recommended Miscellaneous: %2s%n",
-        fmt.format(budget.calculateMiscellaneous()) + "\n------------------------------------");
-  }
 
   /**
    * This is an accessor method for the user's expenses profile.
@@ -83,17 +64,25 @@ public class UserInput {
   private void askForMonthlyIncome() throws IOException {
 
     while (true) {
-      System.out.println("What is your monthly income?");
+      StringBuilder str = new StringBuilder();
+      str.append("What is your monthly income?");
+      System.out.println(str);
       String monthlyIncomeStr = reader.readLine();
       try {
         if (Double.parseDouble(monthlyIncomeStr) < 1 || Double.parseDouble(monthlyIncomeStr) > 1_000_000) {
-          System.out.println("Monthly income must be between 1 and 1,000,000 to qualify for this service.");
+          StringBuilder strThree = new StringBuilder();
+          strThree.append("Monthly income must be between 1 and 1,000,000 to qualify for this service.");
+          System.out.println(strThree);
+//          System.out.println("Monthly income must be between 1 and 1,000,000 to qualify for this service.");
           continue;
         }
         profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
         break;
       } catch (NumberFormatException e) {
-        System.out.println("Incorrect Input. Please enter valid number.");
+        StringBuilder strTwo = new StringBuilder();
+        strTwo.append("Incorrect Input. Please enter valid number.");
+        System.out.println(strTwo);
+//        System.out.println("Incorrect Input. Please enter valid number.");
       }
 
     }
@@ -107,7 +96,10 @@ public class UserInput {
    */
   private void isUserHomeOwnerOrRenter() throws IOException {
     while (true) {
-      System.out.println("Are you a home owner? Y for Yes, N for No.");
+      StringBuilder str = new StringBuilder();
+      str.append("Are you a home owner? Y for Yes, N for No.");
+      System.out.println(str);
+//      System.out.println("Are you a home owner? Y for Yes, N for No.");
       String homeOwner = reader.readLine();
       if (homeOwner.equalsIgnoreCase("y")) {
         profile.setHomeOwner(true);
@@ -116,7 +108,10 @@ public class UserInput {
         profile.setHomeOwner(false);
         break;
       } else {
-        System.out.println("Please input correct option.");
+        StringBuilder strTwo = new StringBuilder();
+        strTwo.append("Please input correct option.");
+        System.out.println(strTwo);
+//        System.out.println("Please input correct option.");
       }
     }
   }
@@ -247,6 +242,26 @@ public class UserInput {
       System.out.println(
           "Total expenses:  " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
+  }
+
+  /**
+   * This method displays the amount the user has available for budgeting (after expenses). It then
+   * displays some recommendations for specific amounts the user should allocate towards specific
+   * areas according to the user's personal finances.
+   */
+  private void displayBudget() {
+    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(),
+        profile.getTotalMonthlyDebtPayment());
+    System.out.println(
+        "------------------------------------\nAmount available for budgeting:" + fmt.format(
+            budget.budgetAmount()) + "\n------------------------------------");
+    System.out.printf("Recommended Savings: %2s %n", fmt.format(budget.calculateSavings()));
+    System.out.printf("Recommended EmergencyFund: %2s%n",
+        fmt.format(budget.calculateEmergencyFund()));
+    System.out.printf("Recommended budget for Food: %2s%n",
+        fmt.format(budget.calculateFoodBudget()));
+    System.out.printf("Recommended Miscellaneous: %2s%n",
+        fmt.format(budget.calculateMiscellaneous()) + "\n------------------------------------");
   }
 
 }

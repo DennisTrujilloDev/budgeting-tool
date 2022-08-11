@@ -1,7 +1,4 @@
 boolean value fields don't start with is, but method identifiers do
 naming conventions
 
-add tests
 in userinput loops, change souts to stringbuilder
-add visuals _______
-add psuedocode chart (Gabe)

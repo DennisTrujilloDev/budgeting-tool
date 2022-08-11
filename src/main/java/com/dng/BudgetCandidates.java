@@ -2,60 +2,72 @@ package com.dng;
 
 public class BudgetCandidates {
 
-  private boolean isEligibleforBudgeting;
-  //this field is not used
+  BudgetItem budget = new BudgetItem();
 
-  private static Double calculateAvailableBudget(boolean isHomeOwner, Double annualIncome,
-      Double totalMonthlyDebtPayment, Double totalMonthlyExpenses, Double monthlyRent, Double monthlyMortgage) {
+  /**
+   * This method is used to calculate the total amount the user has available for budgeting every month by subtracting total expenses from income.
+   * @param userInput
+   */
 
-    double totalAvailableBudget = 0.0;
-    if(isHomeOwner) {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyMortgage;
-    }
-    else {
-      totalAvailableBudget = (annualIncome/12) - totalMonthlyDebtPayment -
-          totalMonthlyExpenses - monthlyRent;
-    }
-    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
-
-    return totalAvailableBudget;
-  }
-
-  public static void executeBudgeting(UserInput userInput) {
+  public static void adviseUser(UserInput userInput) {
     //Calculate Total amount available for budgeting each month.
-    // Total available budget = annualIncome/12 - total debt - total monthly expense.
+    // basic debts + monthly expense + monthly mortgage or rent
 
-    Double totalAvailableBudget = BudgetCandidates.calculateAvailableBudget(userInput.isHomeOwner(),
-        userInput.getAnnualIncome(), userInput.getTotalMonthlyDebtPayment(),
-        userInput.getTotalMonthlyExpenses(), userInput.getMonthlyRent(), userInput.getMonthlyMortgage());
+    Double totalDebt = userInput.getProfile().getTotalMonthlyDebtPayment();
+    Double income = userInput.getProfile().getMonthlyIncome();
 
-    giveBudgetAdvice(userInput.getAnnualIncome(), userInput.getTotalAvailableBudget());
+    System.out.println("budget:" + (income- totalDebt));
+
+
 
   }
-
-  private static void giveBudgetAdvice(Double annualIncome, Double totalAvailableBudget) {
-    double monthlyIncome = annualIncome/12;
-
-    if(totalAvailableBudget <= 0) {
-      //TO-DO
-      System.out.println("You are at high risk of falling into debt; please see a financial advisor.");
-    }
-    else if (totalAvailableBudget <= monthlyIncome * 0.20) {
-      //TO-DO
-      System.out.println("You may need to cut down on your expenses. We recommend downloading an app to help keep track of — and minimize — your miscellaneous expenses.");
-    }
-    else {
-      System.out.println("You are on the right track! Keep it up.");
-    }
-  }
-
-
-//      private void leftoverMoneyAfterBudgeting() {
-////      double leftovers = 100 - (
-////          (EMERGENCY_FUND_CONSTANT + SAVINGS_CONSTANT + MISCELLANEOUS_CONSTANT + FOOD_CONSTANT)
-////              * 100);
-//      System.out.printf("We suggest investing the remaining %f%n in the stock market", leftovers);
-//    }
+////
+////  private static void giveBudgetAdvice(Double monthlyIncome, Double totalAvailableBudget) {
+////
+////
+////    if(totalAvailableBudget <= 0) {
+////      //TO-DO
+////      System.out.println("Total Available Budget less than 0. You will need to think hard on how to manage your money.");
+////    }
+////    else if (totalAvailableBudget <= monthlyIncome * 0.20) {
+////      System.out.println("f budget amount is less than a certain threshold,  \n"
+////          + "Issue a warning about overspending and maybe cutting down on miscellaneous expenses.\n"
+////          + "Also, give advise on getting an extra source of income to supplement their current income.");
+////    }
+////    else {
+////      System.out.println("You are on the right track!");
+////    }
+////  }
+////
+////  private static Double calculateAvailableBudget(boolean isHomeOwner, Double monthlyIncome,
+////      Double totalMonthlyDebtPayment, Double totalMonthlyExpenses, Double monthlyRent, Double monthlyMortgage) {
+////
+////    double totalAvailableBudget = 0.0;
+////    if(isHomeOwner) {
+////      totalAvailableBudget = (monthlyIncome - (totalMonthlyDebtPayment -
+////          totalMonthlyExpenses - monthlyMortgage));
+////    }
+////    else {
+////      totalAvailableBudget = (monthlyIncome - (totalMonthlyDebtPayment -
+////          totalMonthlyExpenses - monthlyRent));
+////    }
+//////    System.out.println("Total Available Amount for Budgeting Each Month: " + totalAvailableBudget);
+////
+////    return totalAvailableBudget;
+////  }
+////
+////  if(budgeta=<= 0) {
+////    //TO-DO
+////    System.out.println("You are at high risk of falling into debt; please see a financial advisor.");
+////  }
+////else if (totalAvailableBudget <= monthlyIncome * 0.20) {
+////    //TO-DO
+////    System.out.println("You may need to cut down on your expenses. We recommend downloading an app to help keep track of — and minimize — your miscellaneous expenses.");
+////  }
+////else {
+////    System.out.println("You are on the right track! Keep it up.");
+////  }
+////
+//
 }
 

@@ -1,6 +1,8 @@
 package com.dng;
 
 public class Debt {
+
+  //TODO Make fields private
   DebtType debtType;
   double amount;
 
@@ -24,5 +26,6 @@ public class Debt {
   public void setAmount(double amount) {
     this.amount = amount;
   }
+
 
 }

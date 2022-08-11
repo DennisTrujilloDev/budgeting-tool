@@ -11,6 +11,7 @@ java{
 group 'com.dng'
 version '1.0-SNAPSHOT'
 
+
 repositories {
     mavenCentral()
 }
@@ -23,4 +24,15 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+javadoc{
+    destinationDir = file("${projectDir}/docs/api")
+    options {
+        links 'https://docs.oracle.com/en/java/javase/11/docs/api'
+    }
+}
+
+clean{
+    delete += file("${projectDir}/docs/api")
 }

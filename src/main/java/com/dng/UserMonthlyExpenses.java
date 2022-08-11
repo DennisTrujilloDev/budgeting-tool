@@ -16,17 +16,21 @@ public class UserMonthlyExpenses {
   boolean homeOwner;
   Double monthlyMortgage = 0.0;
   Double monthlyRent = 0.0;
-  Double monthlyIncome = 0.0;
-  Double totalMonthlyDebtPayment = 0.0;
-  Double totalMonthlyExpenses = 0.0;
+  private Double monthlyIncome = 0.0;
+  private Double totalMonthlyDebtPayment = 0.0;
+  private Double totalMonthlyExpenses = 0.0;
 
-  Double basicDebts=0.0;
-  Double totalAvailableBudget = 0.0;
+  private Double basicDebts=0.0;
+  private Double totalAvailableBudget = 0.0;
 
-  Double totalMonthlyExpense=0.0;
-  boolean isEligibleForBudgeting = false;
+  private Double totalMonthlyExpense=0.0;
+//  boolean isEligibleForBudgeting = false;
+
+
   List<Debt> debts = new ArrayList<>();
   List<Expense> expenses = new ArrayList<>();
+
+
 
 
   public String getName() {
@@ -93,13 +97,13 @@ public class UserMonthlyExpenses {
     this.totalAvailableBudget = totalAvailableBudget;
   }
 
-  public boolean isEligibleForBudgeting() {
-    return isEligibleForBudgeting;
-  }
-
-  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
-    isEligibleForBudgeting = eligibleForBudgeting;
-  }
+//  public boolean isEligibleForBudgeting() {
+//    return isEligibleForBudgeting;
+//  }
+//
+//  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
+//    isEligibleForBudgeting = eligibleForBudgeting;
+//  }
 
   public List<Debt> getDebts() {
     return debts;

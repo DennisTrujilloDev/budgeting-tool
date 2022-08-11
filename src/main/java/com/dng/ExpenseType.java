@@ -1,4 +1,4 @@
-package com.dng.model;
+package com.dng;
 
 /**
  * This class represents the different kinds of expenses a user has.

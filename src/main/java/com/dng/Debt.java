@@ -1,7 +1,5 @@
 package com.dng;
 
-import com.dng.model.DebtType;
-
 /**
  * This class represents the debt, generally speaking, that a user may have.
  */

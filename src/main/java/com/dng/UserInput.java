@@ -1,6 +1,9 @@
 package com.dng;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import java.io.BufferedReader;
@@ -12,6 +15,10 @@ public class UserInput {
 
   Locale locale = new Locale("en", "US");
   NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
+
+  Calendar calendar = Calendar.getInstance();
+  Date date = calendar.getTime();
+
 
   private UserMonthlyExpenses profile = new UserMonthlyExpenses();
 
@@ -61,12 +68,12 @@ public class UserInput {
 
         System.out.printf(
             "%1$s, You are at high risk of falling into debt; please see a financial advisor.\n\n",profile.getName());
-        displayBudget();
+        displayBudgetBorderLine();
       }
 
       else  {
         System.out.printf("%s, You are on the right track! Keep it up.\n\n", profile.getName());
-        displayBudget();
+        displayBudgetGoodStanding();
       }
 
     System.out.printf("Thank you %1s for using the budgeting-tool\n", profile.getName());
@@ -77,11 +84,14 @@ public class UserInput {
   }
 
   private void welcomeMessage() throws IOException {
-    System.out.println("Welcome to Budgeting Counseling.");
-    System.out.println("What's your name?");
+    System.out.println("Welcome to Budgeting Counseling.\n");
+    System.out.println("What is your name? :");
     String name = reader.readLine();
     profile.setName(name);
     System.out.println("Hello, " + profile.getName());
+    String weekDay = new SimpleDateFormat("EEEE", Locale.US).format(date.getTime());
+    System.out.println("Happy " + weekDay + "!!!  :) ");
+    System.out.printf("%1$s,let us help you create a monthly budget.\n\n", profile.getName());
 
   }
 
@@ -96,7 +106,7 @@ public class UserInput {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
     }
-    System.out.println("Monthly Income: " + fmt.format(profile.getMonthlyIncome()));
+
   }
 
   private void isUserHomewonerOrRenter() throws IOException {
@@ -174,7 +184,6 @@ public class UserInput {
       }
       sum = sum + amount;
     }
-    //System.out.println("basic expense total: " + fmt.format(sum));
     profile.setTotalMonthlyExpense(sum);
   }
 
@@ -205,7 +214,7 @@ public class UserInput {
 
       // Get Total monthly payment and print out the amount
      // System.out.println(
-         // "Monthly debt homeowner:: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+
     }
 
     //If the user is not a homeowner (renter), ask how much rent do they pay
@@ -232,7 +241,7 @@ public class UserInput {
 
   }
 
-  private void displayBudget() {
+  private void displayBudgetBorderLine() {
     BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.getTotalMonthlyDebtPayment());
     System.out.println("Amount available for budgeting:\t\t" + fmt.format(budget.budgetAmount()));
     System.out.printf("Recommended Savings: %2s\t\t\t%n", fmt.format(budget.calculateSavings()));
@@ -242,6 +251,18 @@ public class UserInput {
         fmt.format(budget.calculateFoodBudget()));
     System.out.printf("Recommended Miscellaneous:\t\t\t%2s%n",
         fmt.format(budget.calculateMiscellanous()));
+  }
+
+  private void displayBudgetGoodStanding() {
+    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.getTotalMonthlyDebtPayment());
+    System.out.println("Amount available for budgeting:\t\t" + fmt.format(budget.budgetAmount()));
+    System.out.printf("Recommended Savings: %2s\t\t\t%n", fmt.format(budget.calculateSavingsG()));
+    System.out.printf("Recommended EmergencyFund:\t\t\t%2s%n",
+        fmt.format(budget.calculateEmergencyFundG()));
+    System.out.printf("Recommended budget for Food:\t\t\t%2s%n",
+        fmt.format(budget.calculateFoodBudgetG()));
+    System.out.printf("Recommended Miscellaneous:\t\t\t%2s%n",
+        fmt.format(budget.calculateMiscellanousG()));
   }
 
 

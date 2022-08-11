@@ -14,10 +14,10 @@ public class UserMonthlyExpenses {
   private String name;
 
   private boolean homeOwner;
-  Double monthlyMortgage = 0.0;
-  Double monthlyRent = 0.0;
-  Double monthlyIncome = 0.0;
-  private Double totalMonthlyDebtPayment;
+  private Double monthlyMortgage = 0.0;
+  private Double monthlyRent = 0.0;
+  private Double monthlyIncome = 0.0;
+  private Double totalMonthlyDebtPayment = 0.0;
   private Double totalMonthlyExpenses;
 
   private Double basicDebts;
@@ -25,8 +25,8 @@ public class UserMonthlyExpenses {
 
   private Double totalMonthlyExpense;
   private boolean isEligibleForBudgeting;
-  final List<Debt> debts = new ArrayList<>();
-  final List<Expense> expenses = new ArrayList<>();
+  private final List<Debt> debts = new ArrayList<>();
+  private final List<Expense> expenses = new ArrayList<>();
 
   public UserMonthlyExpenses() {
   }

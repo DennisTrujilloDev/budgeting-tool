@@ -60,16 +60,14 @@ public class UserInput {
    */
   private void displayBudget() {
     BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(), profile.getTotalMonthlyDebtPayment());
-
-    System.out.println("Amount available for budgeting:" + fmt.format(budget.budgetAmount())+ "\n");
-
+    System.out.println("------------------------------------\nAmount available for budgeting:" + fmt.format(budget.budgetAmount())+ "\n------------------------------------");
     System.out.printf("Recommended Savings: %2s %n", fmt.format(budget.calculateSavings()));
     System.out.printf("Recommended EmergencyFund: %2s%n",
         fmt.format(budget.calculateEmergencyFund()));
     System.out.printf("Recommended budget for Food: %2s%n",
         fmt.format(budget.calculateFoodBudget()));
     System.out.printf("Recommended Miscellaneous: %2s%n",
-        fmt.format(budget.calculateMiscellaneous()));
+        fmt.format(budget.calculateMiscellaneous()) + "\n------------------------------------");
   }
 
   /**
@@ -97,16 +95,24 @@ public class UserInput {
    * This method asks for then saves the user's monthly income.
    */
   private void askForMonthlyIncome() throws IOException {
+
     while (true) {
       System.out.println("What is your monthly income?");
       String monthlyIncomeStr = reader.readLine();
+      if(Double.parseDouble(monthlyIncomeStr)<1){
+        System.out.println("Please enter a value larger than or equal to 1.");
+        continue;
+      }
       try {
         profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
         break;
       } catch (NumberFormatException e) {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
+
+
     }
+
 //    System.out.println("Annual Income: " + profile.getMonthlyIncome());
   }
 
@@ -175,7 +181,7 @@ public class UserInput {
     for (ExpenseType type : ExpenseType.values()) {
       double amount = 0;
       while (true) {
-        System.out.println("Enter total monthly amount spent on (your) " + type);
+        System.out.println("Total amount spent (monthly) " + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();
         try {
           amount = Double.parseDouble(totalMonthlyExpensesStr);
@@ -220,23 +226,20 @@ public class UserInput {
 
       //TODO add miscellaneous expenses
 
-//      profile.setTotalMonthlyDebtPayment(
-//          profile.getBasicDebts() + profile.getMonthlyMortgage()
-//              + profile.getTotalMonthlyExpense());
+      profile.setTotalMonthlyDebtPayment(
+          profile.getBasicDebts() + profile.getMonthlyMortgage()
+              + profile.getTotalMonthlyExpense());
 
-      // Get Total monthly payment and print out the amount
       System.out.println(
-          "Monthly debt homeowner:: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
+          "Monthly debt homeowner: " + fmt.format(profile.getTotalMonthlyDebtPayment()));
     }
 
-    //If the user is not a homeowner (renter), ask how much rent do they pay
     if (!profile.isHomeOwner()) {
       while (true) {
         System.out.println("How much rent do you pay each month?");
         String rentStr = reader.readLine();
         try {
           profile.setMonthlyRent(Double.parseDouble(rentStr));
-          //should be using getter
           break;
         } catch (NumberFormatException e) {
           System.out.println("Incorrect input. Please enter valid number.");

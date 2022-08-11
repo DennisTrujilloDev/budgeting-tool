@@ -1,8 +1,6 @@
 boolean value fields don't start with is, but method identifiers do
 naming conventions
-check that everything is private
-override Enum string ro get lowercase represetnation
-add recommended % class
+
 add tests
 in userinput loops, change souts to stringbuilder
 add visuals _______

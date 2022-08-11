@@ -21,11 +21,10 @@ public class UserInput {
   private final BufferedReader reader;
 
   /**
-   * The UserInput constructor runs the method that display questions to the user. Their answers to
-   * the questions are saved in a variable via a setter.
-   *
+   * The UserInput constructor instantiates any instances of the class.
    * @throws IOException
    */
+  //ADD THE INVOCATIONS BELOW TO THE JAVADOCS
   public UserInput() throws IOException {
     reader = new BufferedReader(new InputStreamReader(System.in));
     welcomeMessage();
@@ -35,7 +34,6 @@ public class UserInput {
     getMonthlyExpenses();
     collectTotalMortgageOrRent();
     displayBudget();
-
   }
 
   /**
@@ -227,7 +225,6 @@ public class UserInput {
       profile.setMonthlyMortgage(profile.getMonthlyMortgage());
       //Calculates Total payment made in a month (expenses + basic debt + mortgage)
 
-      //TODO add miscellaneous expenses
 
       profile.setTotalMonthlyDebtPayment(
           profile.getBasicDebts() + profile.getMonthlyMortgage()

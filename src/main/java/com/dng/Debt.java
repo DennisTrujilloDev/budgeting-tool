@@ -9,7 +9,7 @@ public class Debt {
   private final double amount;
 
   /**
-   * This constructor initiates the instances of the class.
+   * This constructor initiates any instances of the class.
    * @param debtType the type of debt the user has
    * @param amount the dollar amount of the user's debt
    */

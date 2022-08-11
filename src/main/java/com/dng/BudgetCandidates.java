@@ -1,5 +1,8 @@
 package com.dng;
 
+/**
+ * This class is responsible for
+ */
 public class BudgetCandidates {
 
 //  BudgetItem budget = new BudgetItem();
@@ -11,7 +14,7 @@ public class BudgetCandidates {
   public static void adviseUser(UserInput userInput) {
     Double totalDebt = userInput.getProfile().getTotalMonthlyDebtPayment();
     Double income = userInput.getProfile().getMonthlyIncome();
-    System.out.println("budget:" + (income- totalDebt));
+//    System.out.println("budget:" + (income- totalDebt));
   }
 ////
 ////  private static void giveBudgetAdvice(Double monthlyIncome, Double totalAvailableBudget) {

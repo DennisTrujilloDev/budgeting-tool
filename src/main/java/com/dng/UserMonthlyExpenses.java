@@ -1,30 +1,26 @@
 package com.dng;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
-
+/**
+ * This class contains the fields and methods of the class
+ */
 public class UserMonthlyExpenses {
 
 //  public String userMonthlyExpensesType;
 
   private String name;
-
   private boolean homeOwner;
   private Double monthlyMortgage = 0.0;
   private Double monthlyRent = 0.0;
   private Double monthlyIncome = 0.0;
   private Double totalMonthlyDebtPayment = 0.0;
-  private Double totalMonthlyExpenses;
-
+//  private Double totalMonthlyExpenses;
   private Double basicDebts;
-  private Double totalAvailableBudget;
-
+//  private Double totalAvailableBudget;
   private Double totalMonthlyExpense;
-  private boolean isEligibleForBudgeting;
+//  private boolean isEligibleForBudgeting;
   private final List<Debt> debts = new ArrayList<>();
   private final List<Expense> expenses = new ArrayList<>();
 
@@ -79,29 +75,29 @@ public class UserMonthlyExpenses {
     this.totalMonthlyDebtPayment = totalMonthlyDebtPayment;
   }
 
-  public Double getTotalMonthlyExpenses() {
-    return totalMonthlyExpenses;
-  }
-
-  public void setTotalMonthlyExpenses(Double totalMonthlyExpenses) {
-    this.totalMonthlyExpenses = totalMonthlyExpenses;
-  }
-
-  public Double getTotalAvailableBudget() {
-    return totalAvailableBudget;
-  }
-
-  public void setTotalAvailableBudget(Double totalAvailableBudget) {
-    this.totalAvailableBudget = totalAvailableBudget;
-  }
-
-  public boolean isEligibleForBudgeting() {
-    return isEligibleForBudgeting;
-  }
-
-  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
-    isEligibleForBudgeting = eligibleForBudgeting;
-  }
+//  public Double getTotalMonthlyExpenses() {
+//    return totalMonthlyExpenses;
+//  }
+//
+//  public void setTotalMonthlyExpenses(Double totalMonthlyExpenses) {
+//    this.totalMonthlyExpenses = totalMonthlyExpenses;
+//  }
+//
+//  public Double getTotalAvailableBudget() {
+//    return totalAvailableBudget;
+//  }
+//
+//  public void setTotalAvailableBudget(Double totalAvailableBudget) {
+//    this.totalAvailableBudget = totalAvailableBudget;
+//  }
+//
+//  public boolean isEligibleForBudgeting() {
+//    return isEligibleForBudgeting;
+//  }
+//
+//  public void setEligibleForBudgeting(boolean eligibleForBudgeting) {
+//    isEligibleForBudgeting = eligibleForBudgeting;
+//  }
 
   public List<Debt> getDebts() {
     return debts;

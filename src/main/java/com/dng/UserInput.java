@@ -158,13 +158,12 @@ public class UserInput {
       while (true) {
         System.out.println("Enter " + type + " monthly payment:");
         String debtStr = reader.readLine();
-        debtX = Double.parseDouble(debtStr);
-        if (debtX < 0){
+        if (Double.parseDouble(debtStr) < 0){
           System.out.println("Please enter a value larger than or equal to 0.");
           continue;
         }
         try {
-//          debtX = Double.parseDouble(debtStr);
+          debtX = Double.parseDouble(debtStr);
           profile.getDebts().add(new Debt(type, debtX));
           break;
         } catch (NumberFormatException e) {
@@ -196,6 +195,10 @@ public class UserInput {
       while (true) {
         System.out.println("Total amount spent (monthly) " + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();
+        if (Double.parseDouble(totalMonthlyExpensesStr) < 0){
+          System.out.println("Please enter a value larger than or equal to 0.");
+          continue;
+        }
         try {
           amount = Double.parseDouble(totalMonthlyExpensesStr);
           profile.getExpenses().add(new Expense(type, amount));
@@ -208,7 +211,7 @@ public class UserInput {
 //      System.out.println("your monthly payment: " + amount);
       sum += amount;
     }
-    System.out.println("basic expense total: " + fmt.format(sum));
+    System.out.println("Basic monthly expense total: " + fmt.format(sum));
     profile.setTotalMonthlyExpense(sum);
   }
 
@@ -223,7 +226,10 @@ public class UserInput {
       while (true) {
         System.out.println("How much do you pay in mortgage each month?");
         String mortgageStr = reader.readLine();
-
+        if (Double.parseDouble(mortgageStr) < 0){
+          System.out.println("Please enter a value larger than or equal to 0.");
+          continue;
+        }
         try {
           profile.setMonthlyMortgage(Double.parseDouble(mortgageStr));
           break;
@@ -257,7 +263,7 @@ public class UserInput {
           System.out.println("Incorrect input. Please enter valid number.");
         }
       }
-      System.out.println("Monthly rent: " + fmt.format(profile.getMonthlyRent()));
+      System.out.println("Monthly rent: " + fmt.format(profile.getMonthlyRent() + "\n"));
       profile.setMonthlyRent(profile.getMonthlyRent());
 
       profile.setTotalMonthlyDebtPayment(

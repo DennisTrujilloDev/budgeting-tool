@@ -39,7 +39,7 @@ public class UserInput {
     getMonthlyDebt();
     //ask whether user is a homeowner or a renter.
 
-    isUserHomewonerOrRenter();
+    isUserHomeOwnerOrRenter();
 
     //Get User's Monthly Expenses
     getMonthlyExpenses();
@@ -73,37 +73,44 @@ public class UserInput {
   }
 
   /**
-   *
+   *This accessor method returns the value of the private variable profile.
    * @return
    */
   public UserMonthlyExpenses getProfile() {
     return profile;
   }
 
+  /**
+   * This method asks the user their name then greets them accordingly.
+   * @throws IOException
+   */
   private void welcomeMessage() throws IOException {
-    System.out.println("Welcome to Budgeting Counseling.");
+    System.out.println("Welcome to Budgeting Counseling!");
     System.out.println("What's your name?");
     String name = reader.readLine();
     profile.setName(name);
-    System.out.println("Hello, " + profile.getName());
+    System.out.println("Hi, " + profile.getName() + "!");
 
   }
 
+  /**
+   * This method
+   */
   private void askForMonthlyIncome() throws IOException {
     while (true) {
-      System.out.println("What is your monthly income?");
-      String monthlyIncomeStr = reader.readLine();
       try {
-        profile.setMonthlyIncome(Double.parseDouble(monthlyIncomeStr));
+        System.out.println("What is your monthly income?");
+//        String monthlyIncomeStr =
+            reader.readLine();
         break;
       } catch (NumberFormatException e) {
         System.out.println("Incorrect Input. Please enter valid number.");
       }
     }
-//    System.out.println("Annual Income: " + profile.monthlyIncome);
+//    System.out.println("Annual Income: " + profile.getMonthlyIncome());
   }
 
-  private void isUserHomewonerOrRenter() throws IOException {
+  private void isUserHomeOwnerOrRenter() throws IOException {
     while (true) {
       System.out.println("Are you a home owner? Y for Yes, N for No.");
       String homeOwner = reader.readLine();

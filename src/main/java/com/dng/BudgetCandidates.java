@@ -2,7 +2,7 @@ package com.dng;
 
 public class BudgetCandidates {
 
-  BudgetItem budget = new BudgetItem();
+//  BudgetItem budget = new BudgetItem();
 
   /**
    * This method is used to calculate the total amount the user has available for budgeting every month by subtracting total expenses from income.

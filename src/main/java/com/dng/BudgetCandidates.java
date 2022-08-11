@@ -8,18 +8,10 @@ public class BudgetCandidates {
    * This method is used to calculate the total amount the user has available for budgeting every month by subtracting total expenses from income.
    * @param userInput
    */
-
   public static void adviseUser(UserInput userInput) {
-    //Calculate Total amount available for budgeting each month.
-    // basic debts + monthly expense + monthly mortgage or rent
-
     Double totalDebt = userInput.getProfile().getTotalMonthlyDebtPayment();
     Double income = userInput.getProfile().getMonthlyIncome();
-
     System.out.println("budget:" + (income- totalDebt));
-
-
-
   }
 ////
 ////  private static void giveBudgetAdvice(Double monthlyIncome, Double totalAvailableBudget) {

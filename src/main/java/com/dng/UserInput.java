@@ -27,28 +27,13 @@ public class UserInput {
    * @throws IOException
    */
   public UserInput() throws IOException {
-
     reader = new BufferedReader(new InputStreamReader(System.in));
-
-    //ask for user's name and print welcome message.
     welcomeMessage();
-
-    // get the user's monthly income
     askForMonthlyIncome();
-
-    //get user's  total debt including student loan, car loan, medical bills etc
     getMonthlyDebt();
-    //ask whether user is a homeowner or a renter.
-
     isUserHomeOwnerOrRenter();
-
-    //Get User's Monthly Expenses
     getMonthlyExpenses();
-
-    //collect total monthly mortgage or rent of the user depending on whether they are homeowner or
-    // a renter.
     collectTotalMortgageOrRent();
-
     displayBudget();
 
   }
@@ -190,7 +175,7 @@ public class UserInput {
 
     double sum = 0.0;
     for (ExpenseType type : ExpenseType.values()) {
-      double amount = 0;
+      double amount;
       while (true) {
         System.out.println("Total amount spent (monthly) " + type + ":");
         String totalMonthlyExpensesStr = reader.readLine();

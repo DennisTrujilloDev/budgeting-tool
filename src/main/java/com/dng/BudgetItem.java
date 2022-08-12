@@ -1,57 +1,119 @@
 package com.dng;
 
+/**
+ * This class is responsible for holding the values for the areas in which the user can cut down on costs.
+ * It is referred to to advise the user how to split up the money used for budgeting according to said values.
+ */
+
 public class BudgetItem {
 
-  public static final double EMRGENCY_FUND_CONSTANT = 0.10;
-  public static final double SAVINGS_CONSTANT = 0.15;
-  public static final double MISCELLENAOUS_CONSTANT = 0.40;
-  public static final double FOOD_CONSTANT = 0.35;
-
-  //fields..
-  double income;
-  double debt;
-  double debtplusExpenses;
-  double budgetAmount;
+  private static final double EMERGENCY_FUND_CONSTANT = 0.2;
+  private static final double SAVINGS_CONSTANT = 0.5;
+  private static final double MISCELLANEOUS_CONSTANT = 0.2;
+  private static final double FOOD_CONSTANT = 0.1;
 
 
-  public BudgetItem(double income, double debt) {
+  private static final double EMERGENCY_FUND_CONSTANT_GS = 0.2;
+  private static final double SAVINGS_CONSTANT_GS = 0.2;
+  private static final double MISCELLANEOUS_CONSTANT_GS = 0.5;
+  private static final double FOOD_CONSTANT_GS = 0.1;
+
+  private final double income;
+  private final double debt;
+
+  /**
+   * This constructor initializes the instances of this class.
+   *
+   * @param income the user's monthly salary
+   * @param totalExpenses the user's total monthly expenses
+   */
+
+  public BudgetItem(double income, double totalExpenses) {
     this.income = income;
-    this.debt = debt;
+    this.debt = totalExpenses;
   }
 
-  public double getDebt() {
-    return debt;
-  }
-  public void setDebt(double debt) {
-    this.debt = debt;
-  }
-
+  /**
+   * This method calculates the amount the user has available for budgeting.
+   *
+   * @return the calculation as a double
+   */
   public double budgetAmount() {
-    budgetAmount = (income- debt);
-    return budgetAmount;
+    return income - debt;
   }
 
-  //Business Methods
-  //Method to calculate recommended amount for emergency fund
-  public Object calculateEmergencyFund(){
-    double amount = budgetAmount() * EMRGENCY_FUND_CONSTANT;
-    return amount;
+  /**
+   * This method calculates the recommended amount for your average user to allocate towards an emergency fund.
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateEmergencyFund() {
+    return budgetAmount() * EMERGENCY_FUND_CONSTANT;
 
   }
-  //Method to calculate recommended amount for savings
-  public Object calculateSavings(){
-    double amount = budgetAmount() * SAVINGS_CONSTANT;
-    return amount;
+
+  /**
+   * This method calculates the recommended amount for your average user to allocate towards a savings account.
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateSavings() {
+    return budgetAmount() * SAVINGS_CONSTANT;
   }
-  //Method to calculate recommended amount for miscellaneous
-  public Object calculateMiscellanous(){
-    double amount = budgetAmount() * MISCELLENAOUS_CONSTANT;
-    return amount;
+
+  /**
+   * This method calculates the recommended amount for your average user to allocate to miscellaneous expenses.
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateMiscellaneous() {
+    return budgetAmount() * MISCELLANEOUS_CONSTANT;
   }
-  //Method to calculate recommended amount for food
-  public Object calculateFoodBudget(){
-    double amount = budgetAmount() * FOOD_CONSTANT;
-    return amount;
+
+  /**
+   * This method calculates the recommended amount for your average user to allocate towards groceries.
+   *
+   * @return an object representation of the calculation
+   */
+  public Object calculateFoodBudget() {
+    return budgetAmount() * FOOD_CONSTANT;
+  }
+
+  /**
+   * This method calculates the recommended amount to allocate towards an emergency fund (for users in good financial standing).
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateEmergencyFundG() {
+    return budgetAmount() * EMERGENCY_FUND_CONSTANT_GS;
+
+  }
+
+  /**
+   * This method calculates the recommended amount to allocate towards a savings account (for users in good financial standing).
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateSavingsG() {
+    return budgetAmount() * SAVINGS_CONSTANT_GS;
+  }
+
+  /**
+   * This method calculates the recommended amount to allocate to miscellaneous expenses(for users in good financial standing).
+   *
+   * @return an object representation of the calculation.
+   */
+  public Object calculateMiscellaneousG() {
+    return budgetAmount() * MISCELLANEOUS_CONSTANT_GS;
+  }
+
+  /**
+   * This method calculates the recommended amount to allocate towards groceries (for users in good financial standing).
+   *
+   * @return an object representation of the calculation
+   */
+  public Object calculateFoodBudgetG() {
+    return budgetAmount() * FOOD_CONSTANT_GS;
   }
 
 

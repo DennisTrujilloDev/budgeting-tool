@@ -18,8 +18,6 @@ public class BudgetItem {
   private static final double MISCELLANEOUS_CONSTANT_GS = 0.5;
   private static final double FOOD_CONSTANT_GS = 0.1;
 
-
-  //fields..
   private final double income;
   private final double debt;
 
@@ -45,7 +43,7 @@ public class BudgetItem {
   }
 
   /**
-   * This method calculates the recommended amount to allocate towards an emergency fund.
+   * This method calculates the recommended amount for your average user to allocate towards an emergency fund.
    *
    * @return an object representation of the calculation.
    */
@@ -55,7 +53,7 @@ public class BudgetItem {
   }
 
   /**
-   * This method calculates the recommended amount to allocate towards a savings account.
+   * This method calculates the recommended amount for your average user to allocate towards a savings account.
    *
    * @return an object representation of the calculation.
    */
@@ -64,7 +62,7 @@ public class BudgetItem {
   }
 
   /**
-   * This method calculates the recommended amount to allocate to miscellaneous expenses.
+   * This method calculates the recommended amount for your average user to allocate to miscellaneous expenses.
    *
    * @return an object representation of the calculation.
    */
@@ -73,7 +71,7 @@ public class BudgetItem {
   }
 
   /**
-   * This method calculates the recommended amount to allocate towards groceries.
+   * This method calculates the recommended amount for your average user to allocate towards groceries.
    *
    * @return an object representation of the calculation
    */

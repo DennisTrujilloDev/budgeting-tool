@@ -1,8 +1,8 @@
 package com.dng;
 
 /**
- * This class is responsible for giving suggestions as to where to allocate any money available for
- * budgeting.
+ * This class is responsible for holding the values for the areas in which the user can cut down on costs.
+ * It is referred to to advise the user how to split up the money used for budgeting according to said values.
  */
 
 public class BudgetItem {

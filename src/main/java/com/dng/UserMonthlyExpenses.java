@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is responsible for saving and passing around values that pertain to
- * the user's finances.
+ * This class is responsible for holding the values that are recorded from the user's input,
+ * inclusing
  */
 public class UserMonthlyExpenses {
 

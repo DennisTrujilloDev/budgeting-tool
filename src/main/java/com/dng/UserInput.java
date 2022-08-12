@@ -17,8 +17,7 @@ import java.util.Locale;
 public class UserInput {
 
   private final UserMonthlyExpenses profile = new UserMonthlyExpenses();
-
-  private final BufferedReader reader;
+  private BufferedReader reader;
   private final Locale locale = new Locale("en", "US");
   private final NumberFormat fmt = NumberFormat.getCurrencyInstance(locale);
   private final Calendar calendar = Calendar.getInstance();
@@ -26,22 +25,13 @@ public class UserInput {
 
 
   /**
-   * The UserInput constructor instantiates any instances of the class and invokes the methods listed in this class
-   *
+   * The UserInput constructor instantiates any instances of the class and invokes the methods listed in this class.
+   * Additionally, it determines whether the user is at risk of falling into debt.
    * @throws IOException Signals a failed input/output operation
    */
 
   public UserInput() throws IOException {
 
-    /**
-     * The UserInput constructor instantiates any instances of the class and invokes the methods listed in this class.
-     * Additionally, it determines whether the user is at risk of falling into debt.
-     * @throws IOException Signals a failed input/output operation
-     */
-
-    final Double totalDebt = profile.getTotalMonthlyDebtPayment();
-    final Double income = profile.getMonthlyIncome();
-    final double budgetAmount = income - totalDebt;
     reader = new BufferedReader(new InputStreamReader(System.in));
 
     welcomeMessage();
@@ -51,7 +41,11 @@ public class UserInput {
     isUserHomeownerOrRenter();
     collectTotalMortgageOrRent();
 
-    if (budgetAmount < 0.45 * profile.getMonthlyIncome()) {
+    final Double totalDebt = profile.getTotalMonthlyDebtPayment();
+    final Double income = profile.getMonthlyIncome();
+    final double budgetAmount = income - totalDebt;
+
+    if (budgetAmount <= 0.45 * profile.getMonthlyIncome()) {
       System.out.println(
           "------------------------------------\nMonthly Income: " + fmt.format(
               profile.getMonthlyIncome()) + "\n");
@@ -61,7 +55,8 @@ public class UserInput {
       System.out.printf(
           "Sorry %1$s , a budget can not be created for you at this time.\n"
               + "Your expense is more than your income\n"
-              + "You are in debt. Please see a financial advisor as soon as possible.\n\n"
+              + "You are in debt. "
+              + "Please see a financial advisor as soon as possible.\n\n"
               + "Also consider the following options:\n"
               + "1.Evaluate your fixed expenses and see if there is any chance you can"
               + " save money on them.\n"
@@ -69,17 +64,19 @@ public class UserInput {
               + "3.Renegotiate your credit card interest to get a lower rate.\n"
               + "___________________________________________________________________\n\n",
           profile.getName());
-    } else if (budgetAmount > 0.45 * profile.getMonthlyIncome()
+    }
+    else if (budgetAmount > 0.45 * profile.getMonthlyIncome()
         && budgetAmount <= 0.55 * profile.getMonthlyIncome()) {
       System.out.printf(
-          "%1$s, you are at high risk of falling into debt.\n\n",
+          "%1$s, you are at risk of falling into debt.\n",
           profile.getName());
       displayBudgetBorderLine();
-    } else {
-      System.out.printf("%s, You are on the right track! Keep it up.\n\n", profile.getName());
+    }
+    else {
+      System.out.printf("%s, You are on the right track! Keep it up.\n", profile.getName());
       displayBudgetGoodStanding();
     }
-    System.out.printf("Thank you %1s, for using the Budget Counselling app\n", profile.getName());
+    System.out.printf("Thank you for using the Budget Counselling app, %1s\n", profile.getName());
   }
 
   /**
@@ -87,14 +84,13 @@ public class UserInput {
    * @throws IOException Signals a failed input/output operation
    */
   private void welcomeMessage() throws IOException {
-    System.out.println("Welcome to Budgeting Counseling.\n");
-    System.out.println("What is your name?\n");
+    System.out.println("\t\t\t~Welcome to Budgeting Counseling~");
+    System.out.println("What is your name?");
     String name = reader.readLine();
     profile.setName(name);
-    System.out.println("Hi, " + profile.getName() + "!");
     String weekDay = new SimpleDateFormat("EEEE", Locale.US).format(date.getTime());
-    System.out.println("Happy " + weekDay + " :)");
-    System.out.printf("%1$s, allow us to assist you in managing your finances!\n\n", profile.getName());
+    System.out.println("Hi, " + profile.getName() + "! Happy " + weekDay + " :)");
+    System.out.printf("%1$s, allow us to assist you in managing your finances...\n", profile.getName());
 
   }
 
@@ -169,7 +165,7 @@ public class UserInput {
       double debtX;
       while (true) {
         StringBuilder strTwo = new StringBuilder();
-        strTwo.append("Enter the total monthly amount you put towards ");
+        strTwo.append("Enter the total monthly amount you put towards (your) ");
         strTwo.append(type);
         System.out.println(strTwo);
         String debtStr = reader.readLine();
@@ -203,7 +199,7 @@ public class UserInput {
    */
   private void getMonthlyExpenses() throws IOException {
 
-    System.out.println("\t\t\t~Basic Living Expenses~\nEnter '0' if expense does not apply\n");
+    System.out.println("\t\t\t~Basic Living Expenses~\nEnter '0' if expense does not apply");
 
     double sum = 0.0;
     for (ExpenseType type : ExpenseType.values()) {
@@ -313,7 +309,7 @@ public class UserInput {
 
     System.out.println(
         "Total Expense: " + fmt.format(
-            profile.getTotalMonthlyDebtPayment()) + "\n------------------------------------\n");
+            profile.getTotalMonthlyDebtPayment()) );
 
     System.out.println(
         "------------------------------------\nAmount available for budgeting: " + fmt.format(
@@ -333,16 +329,13 @@ public class UserInput {
    * areas according to the user's personal finances.
    */
   private void displayBudgetGoodStanding() {
-    BudgetItem budget = new BudgetItem(profile.getMonthlyIncome(),
-        profile.getTotalMonthlyDebtPayment());
-
     System.out.println(
         "------------------------------------\nMonthly Income: " + fmt.format(
             profile.getMonthlyIncome()) + "\n");
 
     System.out.println(
         "Total Expense: " + fmt.format(
-            profile.getTotalMonthlyDebtPayment()) + "\n------------------------------------");
+            profile.getTotalMonthlyDebtPayment()));
 
     BudgetItem budget1 = new BudgetItem(profile.getMonthlyIncome(),
         profile.getTotalMonthlyDebtPayment());
@@ -350,7 +343,7 @@ public class UserInput {
     System.out.println(
         "------------------------------------\nAmount available for budgeting:" + fmt.format(
             budget1.budgetAmount()) + "\n-----------------------------------------");
-    System.out.printf("Recommended Savings: %2s\t\t\t%n", fmt.format(budget.calculateSavingsG()));
+    System.out.printf("Recommended Savings: %2s\t\t\t%n", fmt.format(budget1.calculateSavingsG()));
 
     System.out.printf("Recommended EmergencyFund: %2s%n",
         fmt.format(budget1.calculateEmergencyFundG()));

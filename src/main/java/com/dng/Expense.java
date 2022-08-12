@@ -6,6 +6,11 @@ package com.dng;
 
 public class Expense {
 
+  /**
+   * This constructor initiates any instances of the class.
+   * @param expenseType the type of expense the user has
+   * @param amount the dollar amount of the user's expenses
+   */
   public Expense(ExpenseType expenseType, double amount) {
   }
 

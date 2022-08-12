@@ -10,8 +10,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * This class is responsible for asking the user the information needed for the application to run
- * adequately.
+ * This class is responsible for asking for the user's personal and financial information.
  */
 
 public class UserInput {
@@ -133,7 +132,6 @@ public class UserInput {
       StringBuilder str = new StringBuilder();
       str.append("Are you a home owner? Y for Yes, N for No.");
       System.out.println(str);
-//      System.out.println("Are you a home owner? Y for Yes, N for No.");
       String homeOwner = reader.readLine();
       if (homeOwner.equalsIgnoreCase("y")) {
         profile.setHomeOwner(true);
@@ -260,7 +258,7 @@ public class UserInput {
       System.out.println("Monthly Mortgage: " + fmt.format(profile.getMonthlyMortgage()));
       profile.setMonthlyMortgage(profile.getMonthlyMortgage());
 
-      //Calculates Total payment made in a month (expenses + basic debt + mortgage)
+      //Calculates total payment made in a month (expenses + basic debt + mortgage)
       profile.setTotalMonthlyDebtPayment(
           profile.getBasicDebts() + profile.getMonthlyMortgage()
               + profile.getTotalMonthlyExpense());

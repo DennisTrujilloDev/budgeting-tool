@@ -1,4 +1,8 @@
 package com.dng;
+
+/**
+ * This class holds the constants that represent the type(s) of debt the user has.
+ */
 public enum DebtType {
   CAR_LOAN               ("car loan"),
   MEDICAL_BILLS          ("medical bills"),

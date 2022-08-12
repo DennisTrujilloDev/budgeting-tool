@@ -1,7 +1,8 @@
 package com.dng;
 
 /**
- * This class represents the general expenses that a user has.
+ *  * This class is used to represent the expenses that a user may have. It works with the ExpenseType class
+ *  * to hold the sets of values (expense type and amount) which organize and facilitate calculations.
  */
 
 public class Expense {

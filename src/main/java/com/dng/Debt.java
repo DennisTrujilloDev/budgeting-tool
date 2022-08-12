@@ -1,7 +1,8 @@
 package com.dng;
 
 /**
- * This class represents the debt, generally speaking, that a user may have.
+ * This class is used to represent the debt that a user may have. It works with the DebtType class
+ * to hold the sets of values (debt type and amount) which organize and facilitate calculations.
  */
 
 public class Debt {
